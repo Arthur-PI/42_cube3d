@@ -6,7 +6,7 @@
 #    By: apigeon <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/30 16:08:04 by apigeon           #+#    #+#              #
-#    Updated: 2022/12/11 20:33:11 by apigeon          ###   ########.fr        #
+#    Updated: 2022/12/12 00:52:23 by apigeon          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,7 @@ endif
 
 ### EXECUTABLE ###
 NAME	= cube3d
-ARGS	= ""
+ARGS	= ./maps/simple.cub
 
 ### INCLUDES ###
 OBJ_DIR		= bin
