@@ -7,3 +7,4 @@ binary_name
 compile_commands.json
 cube3d
 .cache
+.env
