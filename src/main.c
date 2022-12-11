@@ -6,11 +6,11 @@
 /*   By: apigeon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 12:10:26 by apigeon           #+#    #+#             */
-/*   Updated: 2022/07/14 12:16:51 by apigeon          ###   ########.fr       */
+/*   Updated: 2022/12/11 20:08:57 by apigeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "binary_name.h"
+#include "cube3d.h"
 
 int	main(void)
 {

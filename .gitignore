@@ -4,3 +4,6 @@ a.out
 **/*.o
 tags
 binary_name
+compile_commands.json
+cube3d
+.cache

@@ -6,7 +6,7 @@
 #    By: apigeon <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/30 16:08:04 by apigeon           #+#    #+#              #
-#    Updated: 2022/12/11 20:02:14 by apigeon          ###   ########.fr        #
+#    Updated: 2022/12/11 20:09:14 by apigeon          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,8 +44,8 @@ else
 endif
 
 ### EXECUTABLE ###
-NAME	= binary_name
-ARGS	= args
+NAME	= cube3d
+ARGS	= ""
 
 ### INCLUDES ###
 OBJ_DIR		= bin
@@ -55,7 +55,7 @@ LIBFT_DIR	= libft
 LIBFT		= $(LIBFT_DIR)/libft.a
 
 ### SOURCE FILES ###
-SRCS	= 	main.c
+SRCS	= 	main.c \
 
 ### OBJECTS ###
 OBJS	= $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
