@@ -1,4 +1,3 @@
-
 #include "parser.h"
 
 static bool	valid_filename(const char *filename)
