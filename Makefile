@@ -6,7 +6,7 @@
 #    By: apigeon <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/30 16:08:04 by apigeon           #+#    #+#              #
-#    Updated: 2022/12/12 18:55:25 by apigeon          ###   ########.fr        #
+#    Updated: 2022/12/12 19:30:48 by apigeon          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,6 +59,8 @@ MLX			= $(MLX_DIR)/libmlx.a
 SRCS	+=	error.c \
 			parser/parse_file.c \
 			parser/valid_file.c \
+			parser/get_tokens.c \
+			parser/free_token.c \
 
 ### OBJECTS ###
 OBJS	= $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))

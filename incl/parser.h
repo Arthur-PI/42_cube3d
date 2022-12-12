@@ -6,7 +6,7 @@
 /*   By: apigeon <apigeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 20:13:14 by apigeon           #+#    #+#             */
-/*   Updated: 2022/12/11 20:13:52 by apigeon          ###   ########.fr       */
+/*   Updated: 2022/12/12 19:30:15 by apigeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,9 @@
 # include "libft.h"
 # include "error.h"
 
-void	*parse_file(const char *filename);
+void	free_token(void *ptr);
 bool	valid_file(const char *filename);
+void	*parse_file(const char *filename);
+t_list	*get_tokens(const char *filename);
 
 #endif
