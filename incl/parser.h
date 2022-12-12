@@ -13,6 +13,14 @@
 #ifndef PARSER_H
 # define PARSER_H
 
+# include <stdbool.h>
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <fcntl.h>
 # include "libft.h"
+# include "error.h"
+
+void	*parse_file(const char *filename);
+bool	valid_file(const char *filename);
 
 #endif

@@ -56,8 +56,9 @@ MLX_DIR		= mlx
 MLX			= $(MLX_DIR)/libmlx.a
 
 ### SOURCE FILES ###
-SRCS	= 	main.c \
+SRCS	+=	error.c \
 			parse/parser.c \
+			parse/valid_file.c \
 
 ### OBJECTS ###
 OBJS	= $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))

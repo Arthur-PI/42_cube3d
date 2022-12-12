@@ -13,7 +13,9 @@
 #ifndef CUBE_3D_H
 # define CUBE_3D_H
 
+# include <stdio.h>
 # include "libft.h"
 # include "mlx.h"
+# include "parser.h"
 
 #endif

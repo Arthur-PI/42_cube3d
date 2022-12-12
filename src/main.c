@@ -12,8 +12,18 @@
 
 #include "cube3d.h"
 
-int	main(void)
+static void	usage(const char *prog_name)
 {
-	ft_printf("Hello, world !\n");
+	printf("Usage: %s <map.cub>\n", prog_name);
+}
+
+int	main(int ac, char **av)
+{
+	void	*map;
+
+	if (ac != 2)
+		return (usage(av[0]), 1);
+	map = parse_file(av[1]);
+	(void)map;
 	return (0);
 }
