@@ -17,7 +17,6 @@ CFLAGS	= -Wall -Wextra
 CFLAGS	+= -Wshadow -Wpedantic -Wuninitialized -Wmissing-include-dirs -Wundef -Winvalid-pch
 CFLAGS	+= -Winit-self -Wswitch-enum -Wswitch-default -Wformat=2 -Wformat-nonliteral -Wformat-security -Wformat-y2k
 CFLAGS	+= -Wdouble-promotion -Wfloat-equal -Wpointer-arith
-CFLAGS	+= -Wconditional-uninitialized
 CFLAGS	+= -MMD -MP
 INCLUDE	= -I$(H_DIR) -I$(LIBFT_DIR)/$(H_DIR) -I$(MLX_DIR)
 LFLAGS	= -L$(LIBFT_DIR) -L$(MLX_DIR)
@@ -81,7 +80,7 @@ ifeq ($(UNAME_S),Darwin)
 	VALGRIND	= leaks --list --groupByType --atExit --
 else
 	VALGRIND	= valgrind --track-origins=yes --leak-check=full
-	CFLAGS		+= -X11 -Xext
+	CFLAGS		+= -lX11 -lXext
 endif
 
 ### RULES ###
