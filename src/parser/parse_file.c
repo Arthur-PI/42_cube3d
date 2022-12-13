@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "error.h"
 #include "parser.h"
 
 void	*parse_file(const char *filename)
@@ -23,6 +24,8 @@ void	*parse_file(const char *filename)
 	if (!valid_file(trim_name))
 		return (free(trim_name), NULL);
 	tokens = get_tokens(trim_name);
+	if (tokens == NULL)
+		err_message("can't parse the file into tokens, format invalid");
 	ft_lstclear(&tokens, &free_token);
 	free(trim_name);
 	return (NULL);

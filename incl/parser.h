@@ -20,6 +20,9 @@
 # include "libft.h"
 # include "error.h"
 
+# define TOKEN_ERROR -1
+# define TOKEN_GOOD 1
+
 void	free_token(void *ptr);
 bool	valid_file(const char *filename);
 void	*parse_file(const char *filename);

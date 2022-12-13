@@ -12,12 +12,59 @@
 
 #include "parser.h"
 
+static int	is_info_token(const char *s)
+{
+	int		i;
+	char	*info_symbols[6];
+
+	info_symbols[0] = "NO";
+	info_symbols[1] = "SO";
+	info_symbols[2] = "WE";
+	info_symbols[3] = "EA";
+	info_symbols[4] = "C";
+	info_symbols[5] = "F";
+	i = 0;
+	while (i < 6)
+	{
+		if (ft_strncmp(s, info_symbols[i], ft_strlen(info_symbols[i])) == 0)
+			return (true);
+		i++;
+	}
+	return (false);
+}
+
+static int	extract_info_tokens(t_list **tokens, const char *s)
+{
+	(void)s;
+	(void)tokens;
+	return (TOKEN_ERROR);
+}
+
+static int	extract_map_token(t_list **tokens, const char *s)
+{
+	(void)s;
+	(void)tokens;
+	return (TOKEN_ERROR);
+}
+
 static int	parse_line(t_list **tokens, char *line)
 {
+	int	i;
 	(void)tokens;
-	(void)line;
-	printf("%s", line);
-	return (1);
+	i = 0;
+	while (line[i])
+	{
+		if (is_info_token(line + i))
+		{
+			if (extract_info_tokens(tokens, line + i) == TOKEN_ERROR)
+				return (TOKEN_ERROR);
+			return (TOKEN_GOOD);
+		}
+		i++;
+	}
+	if (extract_map_token(tokens, line) == TOKEN_ERROR)
+		return (TOKEN_ERROR);
+	return (TOKEN_GOOD);
 }
 
 t_list	*get_tokens(const char *filename)
@@ -33,7 +80,7 @@ t_list	*get_tokens(const char *filename)
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
-		if (parse_line(&tokens, line) == -1)
+		if (parse_line(&tokens, line) == TOKEN_ERROR)
 		{
 			free(line);
 			close(fd);
