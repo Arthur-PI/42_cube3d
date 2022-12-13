@@ -6,7 +6,7 @@
 /*   By: apigeon <apigeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 20:13:14 by apigeon           #+#    #+#             */
-/*   Updated: 2022/12/12 19:30:15 by apigeon          ###   ########.fr       */
+/*   Updated: 2022/12/13 17:10:01 by apigeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,31 @@
 # include "libft.h"
 # include "error.h"
 
-# define TOKEN_ERROR -1
-# define TOKEN_GOOD 1
+# define GOOD 1
+# define ERROR_TOKEN -1
+
+typedef enum	e_token_type
+{
+	TOKEN_UNDIFINED,
+	TOKEN_MAP,
+	TOKEN_NORTH,
+	TOKEN_SOUTH,
+	TOKEN_WEST,
+	TOKEN_EAST,
+	TOKEN_CEILING,
+	TOKEN_FLOOR
+}				t_token_type;
+
+typedef struct	s_token
+{
+	t_token_type	type;
+	char			*value;
+}				t_token;
 
 void	free_token(void *ptr);
 bool	valid_file(const char *filename);
 void	*parse_file(const char *filename);
 t_list	*get_tokens(const char *filename);
+t_token	*create_token(char *s, t_token_type type);
 
 #endif

@@ -6,11 +6,23 @@
 /*   By: apigeon <apigeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 20:12:55 by apigeon           #+#    #+#             */
-/*   Updated: 2022/12/13 16:13:15 by apigeon          ###   ########.fr       */
+/*   Updated: 2022/12/13 18:02:34 by apigeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
+
+static void print_tokens(t_list *tokens)
+{
+	t_token	*token;
+
+	while (tokens)
+	{
+		token = tokens->content;
+		printf("Token (%d) -> %s\n", token->type, token->value);
+		tokens = tokens->next;
+	}
+}
 
 /* Parse a file into t_game structure and return it,
  * filename: the path to the file to parse,
@@ -29,6 +41,7 @@ void	*parse_file(const char *filename)
 	tokens = get_tokens(trim_name);
 	if (tokens == NULL)
 		err_message("can't parse the file into tokens, format invalid");
+	print_tokens(tokens);
 	ft_lstclear(&tokens, &free_token);
 	free(trim_name);
 	return (NULL);

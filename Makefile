@@ -6,7 +6,7 @@
 #    By: apigeon <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/30 16:08:04 by apigeon           #+#    #+#              #
-#    Updated: 2022/12/12 19:30:48 by apigeon          ###   ########.fr        #
+#    Updated: 2022/12/13 17:38:47 by apigeon          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ CFLAGS	+= -MMD -MP
 INCLUDE	= -I$(H_DIR) -I$(LIBFT_DIR)/$(H_DIR) -I$(MLX_DIR)
 LFLAGS	= -L$(LIBFT_DIR) -L$(MLX_DIR)
 LINKS	= -lm -lft -lmlx
+VFLAGS	=
 
 ### ENV VARIABLES ###
 -include .env
@@ -30,6 +31,7 @@ FNOERROR	?= false
 
 ifeq ($(FDEBUG),true)
 	CFLAGS += -g3 -Os
+	VFLAGS += -D DEBUG_MODE
 endif
 
 ifeq ($(FNOERROR),false)
@@ -61,6 +63,7 @@ SRCS	+=	error.c \
 			parser/valid_file.c \
 			parser/get_tokens.c \
 			parser/free_token.c \
+			parser/create_token.c \
 
 ### OBJECTS ###
 OBJS	= $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
@@ -107,7 +110,7 @@ $(OBJ_DIR):
 
 $(OBJ_DIR)/%.o:	$(SRC_DIR)/%.c
 	@mkdir -p $(dir $@)
-	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
+	@$(CC) $(CFLAGS) $(INCLUDE) $(VFLAGS) -c $< -o $@
 	@echo "$(NAME): $(BLUE)Creating object file -> $(WHITE)$(notdir $@)... $(GREEN)[Done]$(RESET)"
 
 run: $(NAME)
