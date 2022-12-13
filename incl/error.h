@@ -6,7 +6,7 @@
 /*   By: apigeon <apigeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 19:09:16 by apigeon           #+#    #+#             */
-/*   Updated: 2022/12/13 17:35:07 by apigeon          ###   ########.fr       */
+/*   Updated: 2022/12/13 18:42:07 by apigeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # ifdef DEBUG_MODE
 #  define DEBUG(msg) fprintf(stderr, "[DEBUG %s@%d] %s \n", __FILE__, __LINE__, msg)
 # else
-#  define DEBUG(msg) fprintf(stderr, "")
+#  define DEBUG(msg) NULL
 # endif
 
 
