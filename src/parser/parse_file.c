@@ -6,13 +6,16 @@
 /*   By: apigeon <apigeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 20:12:55 by apigeon           #+#    #+#             */
-/*   Updated: 2022/12/12 21:55:49 by apigeon          ###   ########.fr       */
+/*   Updated: 2022/12/13 16:13:15 by apigeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "error.h"
 #include "parser.h"
 
+/* Parse a file into t_game structure and return it,
+ * filename: the path to the file to parse,
+ * returns: a pointer to a t_game struct
+ */
 void	*parse_file(const char *filename)
 {
 	char	*trim_name;

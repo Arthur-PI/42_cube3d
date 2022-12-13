@@ -6,7 +6,7 @@
 /*   By: apigeon <apigeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 19:06:59 by apigeon           #+#    #+#             */
-/*   Updated: 2022/12/12 19:42:30 by apigeon          ###   ########.fr       */
+/*   Updated: 2022/12/13 16:13:47 by apigeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,11 @@ static int	parse_line(t_list **tokens, char *line)
 	return (TOKEN_GOOD);
 }
 
+/* Return a t_list of tokens according to t_token and t_token_type,
+ * filename: the path to filename to parse,
+ * returns: a pointer to the the first token of the list
+ * or return NULL if an error occured
+ */
 t_list	*get_tokens(const char *filename)
 {
 	int		fd;
