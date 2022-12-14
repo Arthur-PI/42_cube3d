@@ -12,6 +12,25 @@
 
 #include "parser.h"
 
+static char	*get_token_name(t_token_type type)
+{
+	if (type == TOKEN_MAP)
+		return ("MAP");
+	else if (type == TOKEN_NORTH)
+		return ("NORTH");
+	else if (type == TOKEN_SOUTH)
+		return ("SOUTH");
+	else if (type == TOKEN_WEST)
+		return ("WEST");
+	else if (type == TOKEN_EAST)
+		return ("EAST");
+	else if (type == TOKEN_CEILING)
+		return ("CEIL");
+	else if (type == TOKEN_FLOOR)
+		return ("FLOOR");
+	return ("NONE");
+}
+
 static void print_tokens(t_list *tokens)
 {
 	t_token	*token;
@@ -19,7 +38,7 @@ static void print_tokens(t_list *tokens)
 	while (tokens)
 	{
 		token = tokens->content;
-		printf("Token (%d) -> %s\n", token->type, token->value);
+		printf("Token (%s)\t-> %s\n", get_token_name(token->type), token->value);
 		tokens = tokens->next;
 	}
 }

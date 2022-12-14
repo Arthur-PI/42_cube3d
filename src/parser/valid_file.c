@@ -20,9 +20,9 @@ static bool	valid_filename(const char *filename)
 		return (false);
 	len = ft_strlen(filename);
 	if (len < 5)
-		return (false);
+		return (DEBUG("filename invalid (too short)"), false);
 	if (ft_strcmp(filename + (len - 3 - 1), ".cub") != 0)
-		return (false);
+		return (DEBUG("filename invalid (not ending with '.cub')"), false);
 	return (true);
 }
 
@@ -32,9 +32,9 @@ static bool	file_readable(const char *filename)
 
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
-		return (false);
+		return (DEBUG("file invalid (does not exist or wrong permissions)"), false);
 	if (read(fd, NULL, 0) == -1)
-		return (close(fd), false);
+		return (DEBUG("file invalid (not readable)"), close(fd), false);
 	close(fd);
 	return (true);
 }
