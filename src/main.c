@@ -24,6 +24,7 @@ int	main(int ac, char **av)
 	if (ac != 2)
 		return (usage(av[0]), 1);
 	map = parse_file(av[1]);
-	(void)map;
+	if (map == NULL)
+		exit(2);
 	return (0);
 }

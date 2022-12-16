@@ -31,7 +31,7 @@ static char	*get_token_name(t_token_type type)
 	return ("NONE");
 }
 
-static void print_tokens(t_list *tokens)
+static void	print_tokens(t_list *tokens)
 {
 	t_token	*token;
 
@@ -59,7 +59,9 @@ void	*parse_file(const char *filename)
 		return (free(trim_name), NULL);
 	tokens = get_tokens(trim_name);
 	if (tokens == NULL)
-		err_message("can't parse the file into tokens, format invalid");
+		return (err_message(MSG_ERROR_TOKEN), NULL);
+	if (!valid_map(tokens))
+		return (err_message(MSG_INVALID_MAP), NULL);
 	print_tokens(tokens);
 	ft_lstclear(&tokens, &free_token);
 	free(trim_name);

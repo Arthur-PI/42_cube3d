@@ -60,10 +60,15 @@ MLX			= $(MLX_DIR)/libmlx.a
 ### SOURCE FILES ###
 SRCS	+=	error.c \
 			parser/parse_file.c \
-			parser/valid_file.c \
 			parser/get_tokens.c \
 			parser/free_token.c \
 			parser/create_token.c \
+			parser/parse_line.c \
+			parser/validators/valid_file.c \
+			parser/validators/valid_map.c \
+			parser/validators/valid_colors.c \
+			parser/validators/valid_textures.c \
+			parser/validators/valid_map_values.c \
 
 ### OBJECTS ###
 OBJS	= $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))

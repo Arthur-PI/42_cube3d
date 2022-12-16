@@ -32,7 +32,7 @@ static bool	file_readable(const char *filename)
 
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
-		return (DEBUG("file invalid (does not exist or wrong permissions)"), false);
+		return (DEBUG(MSG_CANT_OPEN), false);
 	if (read(fd, NULL, 0) == -1)
 		return (DEBUG("file invalid (not readable)"), close(fd), false);
 	close(fd);
