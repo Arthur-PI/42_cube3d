@@ -19,12 +19,13 @@ static void	usage(const char *prog_name)
 
 int	main(int ac, char **av)
 {
-	void	*map;
+	t_game	*game;
 
 	if (ac != 2)
 		return (usage(av[0]), 1);
-	map = parse_file(av[1]);
-	if (map == NULL)
+	game = parse_file(av[1]);
+	if (game == NULL)
 		exit(2);
+	free_game(game);
 	return (0);
 }

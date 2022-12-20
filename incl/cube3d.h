@@ -15,7 +15,6 @@
 
 # include <stdio.h>
 # include "libft.h"
-# include "mlx.h"
 # include "parser.h"
 
 #endif

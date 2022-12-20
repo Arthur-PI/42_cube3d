@@ -51,6 +51,7 @@ void	*parse_file(const char *filename)
 {
 	char	*trim_name;
 	t_list	*tokens;
+	t_game	*game;
 
 	trim_name = ft_strtrim(filename, " \t");
 	if (!trim_name)
@@ -59,11 +60,18 @@ void	*parse_file(const char *filename)
 		return (free(trim_name), NULL);
 	tokens = get_tokens(trim_name);
 	if (tokens == NULL)
-		return (err_message(MSG_ERROR_TOKEN), NULL);
-	if (!valid_map(tokens))
-		return (err_message(MSG_INVALID_MAP), NULL);
+		return (free(trim_name), err_message(MSG_ERROR_TOKEN), NULL);
 	print_tokens(tokens);
+	game = NULL;
+	if (valid_map(tokens))
+	{
+		game = tokens_to_game(tokens);
+		if (!game)
+			err_message(MSG_ERROR_MAP);
+	}
+	else
+		err_message(MSG_INVALID_MAP);
 	ft_lstclear(&tokens, &free_token);
 	free(trim_name);
-	return (NULL);
+	return (game);
 }

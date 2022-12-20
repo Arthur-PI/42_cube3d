@@ -30,7 +30,7 @@ FTEST		?= false
 FNOERROR	?= false
 
 ifeq ($(FDEBUG),true)
-	CFLAGS += -g3 -Os
+	CFLAGS += -g3
 	VFLAGS += -D DEBUG_MODE
 endif
 
@@ -60,10 +60,12 @@ MLX			= $(MLX_DIR)/libmlx.a
 ### SOURCE FILES ###
 SRCS	+=	error.c \
 			parser/parse_file.c \
+			parser/tokens_to_game.c \
 			parser/get_tokens.c \
-			parser/free_token.c \
 			parser/create_token.c \
 			parser/parse_line.c \
+			free/free_token.c \
+			free/free_game.c \
 			parser/validators/valid_file.c \
 			parser/validators/valid_map.c \
 			parser/validators/valid_colors.c \

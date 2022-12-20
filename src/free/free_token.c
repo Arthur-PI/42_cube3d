@@ -17,8 +17,12 @@
  */
 void	free_token(void *ptr)
 {
+	t_token	*token;
+	
 	if (ptr)
 	{
+		token = ptr;
+		free(token->value);
 		free(ptr);
 	}
 }
