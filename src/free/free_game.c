@@ -26,11 +26,11 @@ static void	free_map(t_map *map)
 	}
 }
 
+// TODO free all xpm loaded textures with mlx_destroy_image
 static void	free_texture(t_texture *textures)
 {
 	if (textures)
 	{
-		// TODO free all xpm loaded textures with mlx_destroy_image
 		free(textures);
 	}
 }

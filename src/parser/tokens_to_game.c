@@ -24,7 +24,7 @@ static t_game	*init_game(void)
 
 	game = malloc(sizeof(*game));
 	if (!game)
-		return (DEBUG(MALLOC_ERROR), NULL);
+		return (DEBUG(MSG_MALLOC_ERROR), NULL);
 	game->map = NULL;
 	game->textures = NULL;
 	return (game);

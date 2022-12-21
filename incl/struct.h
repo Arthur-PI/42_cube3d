@@ -22,7 +22,7 @@ typedef struct s_token
 	char			*value;
 }				t_token;
 
-typedef	struct s_player
+typedef struct s_player
 {
 	int	pos[2];
 }				t_player;

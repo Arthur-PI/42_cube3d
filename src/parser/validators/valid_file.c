@@ -47,8 +47,8 @@ static bool	file_readable(const char *filename)
 bool	valid_file(const char *filename)
 {
 	if (!valid_filename(filename))
-		return (err_message(INVALID_FILENAME), false);
+		return (err_message(MSG_INVALID_FILENAME), false);
 	if (!file_readable(filename))
-		return (err_message(FILE_NOT_READABLE), false);
+		return (err_message(MSG_FILE_NOT_READABLE), false);
 	return (true);
 }

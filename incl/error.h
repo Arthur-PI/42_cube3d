@@ -21,12 +21,13 @@
 #  define DEBUG(msg) (NULL)
 # endif
 
-# define MIN(X,Y) ((X) < (Y) ? (X) : (Y))
-
-# define INVALID_FILENAME "The map filename is not valid, only .cub accepted."
-# define FILE_NOT_READABLE "Can't open the file."
-# define MALLOC_ERROR "can't allocate memory. "
+# define MSG_INVALID_FILENAME "The map filename is invalid, only .cub accepted."
+# define MSG_FILE_NOT_READABLE "Can't open the file."
+# define MSG_MALLOC_ERROR "can't allocate memory. "
 # define MSG_CANT_OPEN "file invalid (does not exist or wrong permissions)"
+# define MSG_ERROR_TOKEN "can't parse the file into tokens, format invalid"
+# define MSG_INVALID_MAP "the map data is invalid please check your file"
+# define MSG_ERROR_MAP "can't parse the tokens into a map"
 
 void	err_message(const char *s);
 
