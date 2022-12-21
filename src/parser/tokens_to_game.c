@@ -42,5 +42,7 @@ t_game	*tokens_to_game(t_list *tokens)
 	game->textures = get_textures(tokens);
 	if (!game->map || !game->textures)
 		return (free_game(game), NULL);
+	if (!can_escape_map(game->map))
+		return (free_game(game), NULL);
 	return (game);
 }

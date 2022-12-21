@@ -34,5 +34,6 @@ bool	valid_textures(t_list *tokens);
 bool	valid_colors(t_list *tokens);
 int		parse_line(t_list **tokens, char *line);
 t_game	*tokens_to_game(t_list *tokens);
+bool	can_escape_map(t_map *map);
 
 #endif
