@@ -6,35 +6,14 @@ static t_texture	*get_textures(t_list *tokens)
 
 	(void)tokens;
 	textures = NULL;
+	DEBUG("malloc error");
 	return (textures);
-}
-
-static t_map	*get_map(t_list *tokens)
-{
-	t_map	*map;
-
-	(void)tokens;
-	map = NULL;
-	return (map);
-}
-
-static t_game	*init_game(void)
-{
-	t_game	*game;
-
-	game = malloc(sizeof(*game));
-	if (!game)
-		return (DEBUG(MSG_MALLOC_ERROR), NULL);
-	game->map = NULL;
-	game->textures = NULL;
-	return (game);
 }
 
 t_game	*tokens_to_game(t_list *tokens)
 {
 	t_game	*game;
 
-	(void)tokens;
 	game = init_game();
 	if (!game)
 		return (NULL);

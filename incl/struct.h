@@ -3,6 +3,7 @@
 
 # include <stdlib.h>
 # include "mlx.h"
+# include "error.h"
 
 typedef enum e_token_type
 {
@@ -53,5 +54,10 @@ typedef struct s_game
 
 void	free_token(void *ptr);
 void	free_game(t_game *game);
+void	free_map(t_map *map);
+void	free_points(char **points);
+
+t_game	*init_game(void);
+t_map	*init_map(void);
 
 #endif

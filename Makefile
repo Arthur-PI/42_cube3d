@@ -65,8 +65,12 @@ SRCS	+=	error.c \
 			parser/create_token.c \
 			parser/parse_line.c \
 			parser/can_escape_map.c \
+			parser/get_map.c \
+			parser/init.c \
 			free/free_token.c \
 			free/free_game.c \
+			free/free_map.c \
+			free/free_points.c \
 			parser/validators/valid_file.c \
 			parser/validators/valid_map.c \
 			parser/validators/valid_colors.c \
