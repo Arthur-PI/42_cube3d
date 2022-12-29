@@ -1,7 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   struct.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: apigeon <apigeon@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/29 17:47:13 by apigeon           #+#    #+#             */
+/*   Updated: 2022/12/29 17:47:23 by apigeon          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef STRUCT_H
 # define STRUCT_H
 
 # include <stdlib.h>
+# include <sys/types.h>
 # include "mlx.h"
 # include "error.h"
 
@@ -38,18 +51,24 @@ typedef struct s_map
 
 typedef struct s_texture
 {
-	void	*ceiling;
-	void	*floor;
-	void	*wall_north;
-	void	*wall_south;
-	void	*wall_west;
-	void	*wall_east;
+	void	*img;
+	char	*file;
 }				t_texture;
+
+typedef struct s_textures
+{
+	int			ceiling;
+	int			floor;
+	t_texture	*wall_north;
+	t_texture	*wall_south;
+	t_texture	*wall_west;
+	t_texture	*wall_east;
+}				t_textures;
 
 typedef struct s_game
 {
 	t_map		*map;
-	t_texture	*textures;
+	t_textures	*textures;
 }				t_game;
 
 void	free_token(void *ptr);

@@ -61,7 +61,7 @@ void	*parse_file(const char *filename)
 	tokens = get_tokens(trim_name);
 	if (tokens == NULL)
 		return (free(trim_name), err_message(MSG_ERROR_TOKEN), NULL);
-	print_tokens(tokens);
+	// print_tokens(tokens);
 	game = NULL;
 	if (valid_map(tokens))
 	{

@@ -1,14 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   tokens_to_game.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: apigeon <apigeon@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/29 17:48:41 by apigeon           #+#    #+#             */
+/*   Updated: 2022/12/29 17:48:42 by apigeon          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "parser.h"
-
-static t_texture	*get_textures(t_list *tokens)
-{
-	t_texture	*textures;
-
-	(void)tokens;
-	textures = NULL;
-	DEBUG("malloc error");
-	return (textures);
-}
 
 t_game	*tokens_to_game(t_list *tokens)
 {

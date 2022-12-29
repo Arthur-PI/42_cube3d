@@ -28,6 +28,7 @@
 # define MSG_ERROR_TOKEN "can't parse the file into tokens, format invalid"
 # define MSG_INVALID_MAP "the map data is invalid please check your file"
 # define MSG_ERROR_MAP "can't parse the tokens into a map"
+# define MSG_INVALID_COLOR "colors must be between 0 and 255"
 
 void	err_message(const char *s);
 

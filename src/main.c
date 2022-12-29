@@ -17,6 +17,27 @@ static void	usage(const char *prog_name)
 	printf("Usage: %s <map.cub>\n", prog_name);
 }
 
+static void	print_game(t_game *game)
+{
+	int	i;
+
+	printf("Game:\n");
+	printf(" - textures:\n");
+	printf("   - north wall: %s\n", game->textures->wall_north->file);
+	printf("   - south wall: %s\n", game->textures->wall_south->file);
+	printf("   - west wall: %s\n", game->textures->wall_west->file);
+	printf("   - east wall: %s\n", game->textures->wall_east->file);
+	printf("   - ceiling: %x\n", game->textures->ceiling);
+	printf("   - floor: %x\n", game->textures->floor);
+	printf(" - map:\n");
+	printf("   - width: %d\n", game->map->width);
+	printf("   - height: %d\n", game->map->height);
+	printf("   - player: (%d,%d)\n", game->map->player->pos[0], game->map->player->pos[1]);
+	i = 0;
+	while (game->map->points[i])
+		printf("   > %s\n", game->map->points[i++]);
+}
+
 int	main(int ac, char **av)
 {
 	t_game	*game;
@@ -26,6 +47,7 @@ int	main(int ac, char **av)
 	game = parse_file(av[1]);
 	if (game == NULL)
 		exit(2);
+	print_game(game);
 	free_game(game);
 	return (0);
 }

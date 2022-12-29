@@ -67,6 +67,7 @@ SRCS	+=	error.c \
 			parser/can_escape_map.c \
 			parser/get_map.c \
 			parser/init.c \
+			parser/get_textures.c \
 			free/free_token.c \
 			free/free_game.c \
 			free/free_map.c \
