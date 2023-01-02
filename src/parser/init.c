@@ -50,5 +50,7 @@ t_game	*init_game(void)
 		return (DEBUG(MSG_MALLOC_ERROR), NULL);
 	game->map = NULL;
 	game->textures = NULL;
+	game->mlx = NULL;
+	game->win = NULL;
 	return (game);
 }

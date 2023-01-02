@@ -29,6 +29,7 @@
 # define MSG_INVALID_MAP "the map data is invalid please check your file"
 # define MSG_ERROR_MAP "can't parse the tokens into a map"
 # define MSG_INVALID_COLOR "colors must be between 0 and 255"
+# define MSG_ERROR_XPM_LOAD "can't load the xpm file, pls verify"
 
 void	err_message(const char *s);
 

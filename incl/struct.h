@@ -15,7 +15,6 @@
 
 # include <stdlib.h>
 # include <sys/types.h>
-# include "mlx.h"
 # include "error.h"
 
 typedef enum e_token_type
@@ -51,6 +50,8 @@ typedef struct s_map
 
 typedef struct s_texture
 {
+	int		width;
+	int		height;
 	void	*img;
 	char	*file;
 }				t_texture;
@@ -68,6 +69,8 @@ typedef struct s_textures
 typedef struct s_game
 {
 	t_map		*map;
+	void		*mlx;
+	void		*win;
 	t_textures	*textures;
 }				t_game;
 

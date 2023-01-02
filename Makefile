@@ -68,15 +68,17 @@ SRCS	+=	error.c \
 			parser/get_map.c \
 			parser/init.c \
 			parser/get_textures.c \
-			free/free_token.c \
-			free/free_game.c \
-			free/free_map.c \
-			free/free_points.c \
 			parser/validators/valid_file.c \
 			parser/validators/valid_map.c \
 			parser/validators/valid_colors.c \
 			parser/validators/valid_textures.c \
 			parser/validators/valid_map_values.c \
+			free/free_token.c \
+			free/free_game.c \
+			free/free_map.c \
+			free/free_points.c \
+			graphics/load_textures.c \
+			graphics/init_graphics.c \
 
 ### OBJECTS ###
 OBJS	= $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
@@ -99,7 +101,7 @@ ifeq ($(UNAME_S),Darwin)
 	VALGRIND	= leaks --list --groupByType --atExit --
 else
 	VALGRIND	= valgrind --track-origins=yes --leak-check=full
-	CFLAGS		+= -lX11 -lXext
+	LINKS		+= -lX11 -lXext
 endif
 
 ### RULES ###

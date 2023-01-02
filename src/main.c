@@ -32,7 +32,8 @@ static void	print_game(t_game *game)
 	printf(" - map:\n");
 	printf("   - width: %d\n", game->map->width);
 	printf("   - height: %d\n", game->map->height);
-	printf("   - player: (%d,%d)\n", game->map->player->pos[0], game->map->player->pos[1]);
+	printf("   - player: (%d,%d)\n", game->map->player->pos[0],
+		game->map->player->pos[1]);
 	i = 0;
 	while (game->map->points[i])
 		printf("   > %s\n", game->map->points[i++]);
@@ -48,6 +49,10 @@ int	main(int ac, char **av)
 	if (game == NULL)
 		exit(2);
 	print_game(game);
+	if (init_graphics(game) == -1)
+		return (free_game(game), 3);
+	if (load_textures(game->mlx, game->textures) == -1)
+		return (free_game(game), 4);
 	free_game(game);
 	return (0);
 }

@@ -10,26 +10,27 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "struct.h"
+#include "graphics.h"
 
-// TODO free all xpm loaded textures with mlx_destroy_image
-static void	free_texture(t_texture *texture)
+static void	free_texture(void *mlx, t_texture *texture)
 {
 	if (texture)
 	{
+		if (texture->img)
+			mlx_destroy_image(mlx, texture->img);
 		free(texture->file);
 		free(texture);
 	}
 }
 
-static void	free_textures(t_textures *textures)
+static void	free_textures(void *mlx, t_textures *textures)
 {
 	if (textures)
 	{
-		free_texture(textures->wall_north);
-		free_texture(textures->wall_south);
-		free_texture(textures->wall_west);
-		free_texture(textures->wall_east);
+		free_texture(mlx, textures->wall_north);
+		free_texture(mlx, textures->wall_south);
+		free_texture(mlx, textures->wall_west);
+		free_texture(mlx, textures->wall_east);
 		free(textures);
 	}
 }
@@ -39,7 +40,14 @@ void	free_game(t_game *game)
 	if (game)
 	{
 		free_map(game->map);
-		free_textures(game->textures);
+		free_textures(game->mlx, game->textures);
+		if (game->win)
+			mlx_destroy_window(game->mlx, game->win);
+		if (game->mlx)
+		{
+			mlx_destroy_display(game->mlx);
+			free(game->mlx);
+		}
 		free(game);
 	}
 }

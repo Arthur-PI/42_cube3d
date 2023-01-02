@@ -12,6 +12,7 @@
 
 #include "parser.h"
 
+/*
 static char	*get_token_name(t_token_type type)
 {
 	if (type == TOKEN_MAP)
@@ -42,6 +43,7 @@ static void	print_tokens(t_list *tokens)
 		tokens = tokens->next;
 	}
 }
+*/
 
 /* Parse a file into t_game structure and return it,
  * filename: the path to the file to parse,
@@ -61,7 +63,6 @@ void	*parse_file(const char *filename)
 	tokens = get_tokens(trim_name);
 	if (tokens == NULL)
 		return (free(trim_name), err_message(MSG_ERROR_TOKEN), NULL);
-	// print_tokens(tokens);
 	game = NULL;
 	if (valid_map(tokens))
 	{

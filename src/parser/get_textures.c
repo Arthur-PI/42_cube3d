@@ -107,14 +107,29 @@ static int	fill_floor_ceiling(t_list *tokens, t_textures *textures)
 	return (1);
 }
 
+static t_textures	*init_textures(void)
+{
+	t_textures	*textures;
+
+	textures = malloc(sizeof(*textures));
+	if (!textures)
+		return (DEBUG("malloc error"), NULL);
+	textures->ceiling = 0;
+	textures->floor = 0;
+	textures->wall_north = NULL;
+	textures->wall_south = NULL;
+	textures->wall_west = NULL;
+	textures->wall_east = NULL;
+	return (textures);
+}
+
 t_textures	*get_textures(t_list *tokens)
 {
 	t_textures	*textures;
 
-	(void)tokens;
-	textures = malloc(sizeof(*textures));
+	textures = init_textures();
 	if (!textures)
-		return (DEBUG("malloc error"), NULL);
+		return (NULL);
 	if (fill_wall_textures(tokens, textures) == -1)
 		return (NULL);
 	if (fill_floor_ceiling(tokens, textures) == -1)

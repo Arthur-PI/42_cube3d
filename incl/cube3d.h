@@ -16,5 +16,6 @@
 # include <stdio.h>
 # include "libft.h"
 # include "parser.h"
+# include "graphics.h"
 
 #endif
