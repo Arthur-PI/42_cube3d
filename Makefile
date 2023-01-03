@@ -20,7 +20,7 @@ CFLAGS	+= -Wdouble-promotion -Wfloat-equal -Wpointer-arith
 CFLAGS	+= -MMD -MP
 INCLUDE	= -I$(H_DIR) -I$(LIBFT_DIR)/$(H_DIR) -I$(MLX_DIR)
 LFLAGS	= -L$(LIBFT_DIR) -L$(MLX_DIR)
-LINKS	= -lm -lft -lmlx
+LINKS	= -lm -lft -lmlx -lX11 -lXext
 VFLAGS	=
 
 ### ENV VARIABLES ###
@@ -99,9 +99,9 @@ WHITE	= \033[1;37m
 UNAME_S = $(shell uname -s)
 ifeq ($(UNAME_S),Darwin)
 	VALGRIND	= leaks --list --groupByType --atExit --
+	LFLAGS		+= -L/usr/X11/lib
 else
 	VALGRIND	= valgrind --track-origins=yes --leak-check=full
-	LINKS		+= -lX11 -lXext
 endif
 
 ### RULES ###
