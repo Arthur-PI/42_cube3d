@@ -28,6 +28,7 @@ VFLAGS	=
 FDEBUG		?= false
 FTEST		?= false
 FNOERROR	?= false
+FASAN		?= false
 
 ifeq ($(FDEBUG),true)
 	CFLAGS += -g3
@@ -36,6 +37,10 @@ endif
 
 ifeq ($(FNOERROR),false)
 	CFLAGS += -Werror
+endif
+
+ifeq ($(FASAN),true)
+	CFLAGS += -fsanitize=address
 endif
 
 ifeq ($(FTEST),true)
@@ -79,6 +84,7 @@ SRCS	+=	error.c \
 			free/free_points.c \
 			graphics/load_textures.c \
 			graphics/init_graphics.c \
+			graphics/setup_hooks.c \
 
 ### OBJECTS ###
 OBJS	= $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
@@ -133,6 +139,13 @@ run: $(NAME)
 
 val: $(NAME)
 	@$(VALGRIND) ./$(NAME) $(ARGS)
+
+info:
+	@echo "$(BLUE)NAME$(RESET): $(NAME)"
+	@echo "$(BLUE)CFLAGS$(RESET): $(CFLAGS)"
+	@echo "$(BLUE)INCLUDE$(RESET): $(INCLUDE)"
+	@echo "$(BLUE)LFLAGS$(RESET): $(LFLAGS)"
+	@echo "$(BLUE)LINKS$(RESET): $(LINKS)"
 
 clean:
 	@$(MAKE) clean -C $(LIBFT_DIR)

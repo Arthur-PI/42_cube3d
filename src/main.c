@@ -53,6 +53,8 @@ int	main(int ac, char **av)
 		return (free_game(game), 3);
 	if (load_textures(game->mlx, game->textures) == -1)
 		return (free_game(game), 4);
+	setup_hooks(game);
+	mlx_loop(game->mlx);
 	free_game(game);
 	return (0);
 }
