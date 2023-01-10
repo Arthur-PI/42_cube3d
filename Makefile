@@ -44,7 +44,8 @@ ifeq ($(FASAN),true)
 endif
 
 ifeq ($(FTEST),true)
-	SRCS	= test_main.c
+	SRCS	= tests/main.c \
+			  tests/core/run_tests.c
 else
 	SRCS	= main.c
 endif
@@ -146,6 +147,7 @@ info:
 	@echo "$(BLUE)INCLUDE$(RESET): $(INCLUDE)"
 	@echo "$(BLUE)LFLAGS$(RESET): $(LFLAGS)"
 	@echo "$(BLUE)LINKS$(RESET): $(LINKS)"
+	@echo "$(BLUE)SRCS$(RESET): $(SRCS)"
 
 clean:
 	@$(MAKE) clean -C $(LIBFT_DIR)
