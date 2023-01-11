@@ -43,7 +43,7 @@ ifeq ($(FASAN),true)
 	CFLAGS += -fsanitize=address
 endif
 
-ifeq ($(FTEST),true)
+ifeq (test, $(filter test,$(MAKECMDGOALS)))
 	SRCS	= tests/main.c \
 			  tests/core/run_tests.c
 else
@@ -140,6 +140,9 @@ run: $(NAME)
 
 val: $(NAME)
 	@$(VALGRIND) ./$(NAME) $(ARGS)
+
+test:	all
+	@./$(NAME)
 
 info:
 	@echo "$(BLUE)NAME$(RESET): $(NAME)"
