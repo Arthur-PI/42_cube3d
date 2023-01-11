@@ -10,6 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
+PROJECT	= cube3d
 
 ### COMPILATION ###
 CC		= cc
@@ -22,6 +23,10 @@ INCLUDE	= -I$(H_DIR) -I$(LIBFT_DIR)/$(H_DIR) -I$(MLX_DIR)
 LFLAGS	= -L$(LIBFT_DIR) -L$(MLX_DIR)
 LINKS	= -lm -lft -lmlx -lX11 -lXext
 VFLAGS	=
+
+### EXECUTABLE ###
+NAME	= $(PROJECT)
+ARGS	= ./maps/simple.cub
 
 ### ENV VARIABLES ###
 -include .env
@@ -44,19 +49,17 @@ ifeq ($(FASAN),true)
 endif
 
 ifeq (test, $(filter test,$(MAKECMDGOALS)))
-	SRCS	= tests/main.c \
-			  tests/core/run_tests.c
+	NAME	= bin/test
+	SRCS	= tests/core/run_tests.c \
+			  tests/main.c
 else
 	SRCS	= main.c
 endif
 
-### EXECUTABLE ###
-NAME	= cube3d
-ARGS	= ./maps/simple.cub
-
 ### INCLUDES ###
 OBJ_DIR		= bin
 SRC_DIR		= src
+TEST_DIR	= tests
 H_DIR		= incl
 LIBFT_DIR	= libft
 LIBFT		= $(LIBFT_DIR)/libft.a
@@ -115,25 +118,27 @@ endif
 all:	$(NAME)
 
 $(LIBFT):
-	@echo "$(NAME): $(GREEN)Compiling $(LIBFT_DIR)$(RESET)"
+	@echo "$(PROJECT): $(GREEN)Compiling $(LIBFT_DIR)$(RESET)"
 	@$(MAKE) addon -C $(LIBFT_DIR)
 
 $(MLX):
-	@echo "$(NAME): $(GREEN)Compiling $(MLX_DIR)$(RESET)"
+	@echo "$(PROJECT): $(GREEN)Compiling $(MLX_DIR)$(RESET)"
 	@$(MAKE) -C $(MLX_DIR)
 
-$(NAME):	$(LIBFT) $(MLX) $(OBJ_DIR) $(OBJS)
+$(NAME):	$(LIBFT) $(MLX) $(OBJS)
 	@$(CC) $(CFLAGS) $(LFLAGS) $(OBJS) $(LINKS) -o $(NAME)
-	@echo "$(NAME): $(BLUE)Creating program file -> $(WHITE)$(notdir $@)... $(GREEN)[Done]$(RESET)"
-	@echo "$(NAME): $(GREEN)Project successfully compiled$(RESET)"
+	@echo "$(PROJECT): $(BLUE)Creating program file -> $(WHITE)$(notdir $@)... $(GREEN)[Done]$(RESET)"
+	@echo "$(PROJECT): $(GREEN)Project successfully compiled$(RESET)"
 
-$(OBJ_DIR):
-	@mkdir -p $(OBJ_DIR)
-
-$(OBJ_DIR)/%.o:	$(SRC_DIR)/%.c
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) $(INCLUDE) $(VFLAGS) -c $< -o $@
-	@echo "$(NAME): $(BLUE)Creating object file -> $(WHITE)$(notdir $@)... $(GREEN)[Done]$(RESET)"
+	@echo "$(PROJECT): $(BLUE)Creating object file -> $(WHITE)$(notdir $@)... $(GREEN)[Done]$(RESET)"
+
+$(OBJ_DIR)/$(TEST_DIR)/%.o: $(TEST_DIR)/%.c
+	@mkdir -p $(dir $@)
+	@$(CC) $(CFLAGS) $(INCLUDE) $(VFLAGS) -c $< -o $@
+	@echo "$(PROJECT): $(BLUE)Creating test object file -> $(WHITE)$(notdir $@)... $(GREEN)[Done]$(RESET)"
 
 run: $(NAME)
 	@./$(NAME) $(ARGS)
@@ -141,7 +146,7 @@ run: $(NAME)
 val: $(NAME)
 	@$(VALGRIND) ./$(NAME) $(ARGS)
 
-test:	all
+test: all
 	@./$(NAME)
 
 info:
@@ -155,12 +160,12 @@ info:
 clean:
 	@$(MAKE) clean -C $(LIBFT_DIR)
 	@$(MAKE) clean -C $(MLX_DIR)
-	@echo "$(NAME): $(RED)Supressing object files$(RESET)"
+	@echo "$(PROJECT): $(RED)Supressing object files$(RESET)"
 	@rm -rf $(OBJ_DIR)
 
 fclean:	clean
 	@$(MAKE) fclean -C $(LIBFT_DIR)
-	@echo "$(NAME): $(RED)Supressing program file$(RESET)"
+	@echo "$(PROJECT): $(RED)Supressing program file$(RESET)"
 	@rm -f $(NAME)
 
 re:	fclean all

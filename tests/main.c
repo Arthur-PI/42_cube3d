@@ -27,6 +27,12 @@ void	test4(void)
 	assert_str(s1, s2);
 }
 
+void	test5(void)
+{
+	char *s1 = "Banjour !";
+	s1[1] = 'o';
+}
+
 int	main(void)
 {
 	t_test	tests[] = {
@@ -34,6 +40,7 @@ int	main(void)
 		{&test2, "main::test2"},
 		{&test3, "main::test3"},
 		{&test4, "main::test4"},
+		{&test5, "main::test5"},
 		{NULL, NULL}
 	};
 	run_tests(tests);

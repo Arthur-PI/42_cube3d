@@ -21,15 +21,15 @@ void	print_pipe(int fd)
 
 void	test_passed(char *name, double time)
 {
-	printf("\t%sPASS%s [% 6.fms]\t\t%s%s%s\n", GREEN, RESET, time, YELLOW, name, RESET);
+	printf("\t%sPASS%s [% 6.2fs]\t\t%s%s%s\n", GREEN, RESET, time, BLUE, name, RESET);
 }
 
 void	test_failed(char *name, int stdout, int stderr, double time)
 {
-	printf("\t%sFAIL%s [% 6.fms]\t\t%s%s%s\n", RED, RESET, time, YELLOW, name, RESET);
-	printf("\n%s--- STDOUT:%s\n", RED, RESET);
+	printf("\t%sFAIL%s [% 6.2fs]\t\t%s%s%s\n", RED, RESET, time, BLUE, name, RESET);
+	printf("\n%s--- STDOUT:%s           \t\t%s%s%s %s---%s\n", RED, RESET, BLUE, name, RESET, RED, RESET);
 	print_pipe(stdout);
-	printf("\n%s--- STDERR:%s\n", RED, RESET);
+	printf("\n%s--- STDERR:%s           \t\t%s%s%s %s---%s\n", RED, RESET, BLUE, name, RESET, RED, RESET);
 	print_pipe(stderr);
 	printf("\n%s---%s\n", RED, RESET);
 }
@@ -46,10 +46,13 @@ void	child_test(void (*f)(void), int fd_out[2], int fd_err[2])
 
 double timediff(t_timeval end, t_timeval start)
 {
-	return ((end.tv_sec - start.tv_sec) * 1000 + (end.tv_usec - start.tv_usec) / 1000);
+	double	diff;
+
+	diff = ((end.tv_sec - start.tv_sec) * 1000 + ((double)(end.tv_usec - start.tv_usec)) / 1000);
+	return (diff / 1000);
 }
 
-bool	launch_test(void (*f)(void), char *name, uint *total_time)
+bool	launch_test(void (*f)(void), char *name, double *total_time)
 {
 	int				pid, status;
 	int				fd_out[2], fd_err[2];
@@ -80,12 +83,24 @@ bool	launch_test(void (*f)(void), char *name, uint *total_time)
 	return (status != 0);
 }
 
+uint	nb_tests(t_test tests[])
+{
+	uint	i;
+
+	i = 0;
+	while (tests[i].f != NULL)
+		i++;
+	return (i);
+}
+
 void	run_tests(t_test tests[])
 {
-	uint	i, failed, total_time;
+	uint	i, failed, nbtests;
+	double	total_time;
 
 	i = failed = total_time = 0;
-	printf("    %sStarting tests%s\n", GREEN, RESET);
+	nbtests = nb_tests(tests);
+	printf("    %sStarting%s %d tests\n", GREEN, RESET, nbtests);
 	printf("------------\n");
 	while (tests[i].f != NULL && failed == 0) {
 		failed += launch_test(tests[i].f, tests[i].name, &total_time);
@@ -94,6 +109,6 @@ void	run_tests(t_test tests[])
 	if (failed)
 		printf("%sCanceling due to test failure%s\n", RED, RESET);
 	printf("------------\n");
-	printf("    %sSummary%s [%6dms] tests run: %d %spassed%s, %d %sfailed%s\n",
-		GREEN, RESET, total_time, i - failed, GREEN, RESET, failed, RED, RESET);
+	printf("    %sSummary%s [% 6.2fs] %d/%d tests run: %d %spassed%s, %d %sfailed%s\n",
+		GREEN, RESET, total_time, i, nbtests, i - failed, GREEN, RESET, failed, RED, RESET);
 }
