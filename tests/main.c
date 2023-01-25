@@ -29,8 +29,12 @@ void	test4(void)
 
 void	test5(void)
 {
-	char *s1 = "Banjour !";
-	s1[1] = 'o';
+	char *s1 = "Lonjour";
+}
+
+void	test6(void)
+{
+	while (1) {continue ;}
 }
 
 int	main(void)
@@ -41,6 +45,7 @@ int	main(void)
 		{&test3, "main::test3"},
 		{&test4, "main::test4"},
 		{&test5, "main::test5"},
+		{&test6, "main::test6"},
 		{NULL, NULL}
 	};
 	run_tests(tests);

@@ -24,10 +24,25 @@ void	test_passed(char *name, double time)
 	printf("\t%sPASS%s [% 6.2fs]\t\t%s%s%s\n", GREEN, RESET, time, BLUE, name, RESET);
 }
 
-void	test_failed(char *name, int stdout, int stderr, double time)
+void	test_failed(char *name, int stdout, int stderr, double time, int status)
 {
-	printf("\t%sFAIL%s [% 6.2fs]\t\t%s%s%s\n", RED, RESET, time, BLUE, name, RESET);
-	printf("\n%s--- STDOUT:%s           \t\t%s%s%s %s---%s\n", RED, RESET, BLUE, name, RESET, RED, RESET);
+	int		signal;
+	char	*sig;
+
+	sig = "";
+	if (WIFSIGNALED(status)) {
+		signal = WTERMSIG(status);
+		if (signal == SIGSEGV)
+			sig = "SIGSEGV";
+		if (signal == SIGBUS)
+			sig = "SIGBUS";
+		if (signal == SIGPIPE)
+			sig = "SIGPIPE";
+		if (signal == SIGUSR1)
+			sig = "TIMEOUT";
+	}
+	printf("\t%sFAIL%s [% 6.2fs]\t\t%s%s%s %s%s%s\n\n", RED, RESET, time, BLUE, name, RESET, RED, sig, RESET);
+	printf("%s--- STDOUT:%s           \t\t%s%s%s %s---%s\n", RED, RESET, BLUE, name, RESET, RED, RESET);
 	print_pipe(stdout);
 	printf("\n%s--- STDERR:%s           \t\t%s%s%s %s---%s\n", RED, RESET, BLUE, name, RESET, RED, RESET);
 	print_pipe(stderr);
@@ -52,9 +67,23 @@ double timediff(t_timeval end, t_timeval start)
 	return (diff / 1000);
 }
 
+int	settimeout(int pid, uint timeout)
+{
+	int	pid2;
+	
+	pid2 = fork();
+	if (pid2 == -1) exit(4);
+	if (pid2 == 0) {
+		sleep(timeout);
+		kill(pid, SIGUSR1);
+		exit(0);
+	}
+	return (pid2);
+}
+
 bool	launch_test(void (*f)(void), char *name, double *total_time)
 {
-	int				pid, status;
+	int				pid, status, timer_pid;
 	int				fd_out[2], fd_err[2];
 	double			elapsed;
 	struct timeval 	start, end;
@@ -70,16 +99,18 @@ bool	launch_test(void (*f)(void), char *name, double *total_time)
 	// Main process here because child exit
 	close(fd_out[1]);
 	close(fd_err[1]);
-	wait(&status);
+	timer_pid = settimeout(pid, 1);
+	waitpid(pid, &status, 0);
 	gettimeofday(&end, NULL);
 	elapsed = timediff(end, start);
 	*total_time += elapsed;
-	if (status != 0)
-		test_failed(name, fd_out[0], fd_err[0], elapsed);
-	else
+	if (WIFEXITED(status) && WEXITSTATUS(status) == 0)
 		test_passed(name, elapsed);
+	else
+		test_failed(name, fd_out[0], fd_err[0], elapsed, status);
 	close(fd_out[0]);
 	close(fd_err[0]);
+	kill(timer_pid, SIGKILL);
 	return (status != 0);
 }
 

@@ -10,6 +10,7 @@
 # include <sys/wait.h>
 # include <assert.h>
 # include <sys/time.h>
+# include <signal.h>
 
 # define RESET	"\033[0;0m"
 # define BLACK	"\033[0;30m"
