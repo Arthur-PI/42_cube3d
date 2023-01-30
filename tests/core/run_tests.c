@@ -24,14 +24,14 @@ void	test_passed(char *name, double time)
 	printf("\t%sPASS%s [% 6.2fs]\t\t%s%s%s\n", GREEN, RESET, time, BLUE, name, RESET);
 }
 
-void	test_failed(char *name, int stdout, int stderr, double time, int status)
+void	print_test_fail_banner(t_test_infos *test)
 {
 	int		signal;
 	char	*sig;
 
 	sig = "";
-	if (WIFSIGNALED(status)) {
-		signal = WTERMSIG(status);
+	if (WIFSIGNALED(test->status)) {
+		signal = WTERMSIG(test->status);
 		if (signal == SIGSEGV)
 			sig = "SIGSEGV";
 		if (signal == SIGBUS)
@@ -41,10 +41,15 @@ void	test_failed(char *name, int stdout, int stderr, double time, int status)
 		if (signal == SIGUSR1)
 			sig = "TIMEOUT";
 	}
-	printf("\t%sFAIL%s [% 6.2fs]\t\t%s%s%s %s%s%s\n\n", RED, RESET, time, BLUE, name, RESET, RED, sig, RESET);
-	printf("%s--- STDOUT:%s           \t\t%s%s%s %s---%s\n", RED, RESET, BLUE, name, RESET, RED, RESET);
+	printf("\t%sFAIL%s [% 6.2fs]\t\t%s%s%s %s%s%s\n", RED, RESET, test->time, BLUE, test->name, RESET, RED, sig, RESET);
+}
+
+void	test_failed(t_test_infos *test, int stdout, int stderr)
+{
+	print_test_fail_banner(test);
+	printf("\n%s--- STDOUT:%s           \t\t%s%s%s %s---%s\n", RED, RESET, BLUE, test->name, RESET, RED, RESET);
 	print_pipe(stdout);
-	printf("\n%s--- STDERR:%s           \t\t%s%s%s %s---%s\n", RED, RESET, BLUE, name, RESET, RED, RESET);
+	printf("\n%s--- STDERR:%s           \t\t%s%s%s %s---%s\n", RED, RESET, BLUE, test->name, RESET, RED, RESET);
 	print_pipe(stderr);
 	printf("\n%s---%s\n", RED, RESET);
 }
@@ -74,44 +79,47 @@ int	settimeout(int pid, uint timeout)
 	pid2 = fork();
 	if (pid2 == -1) exit(4);
 	if (pid2 == 0) {
-		sleep(timeout);
+		usleep(timeout * 1000);
 		kill(pid, SIGUSR1);
 		exit(0);
 	}
 	return (pid2);
 }
 
-bool	launch_test(void (*f)(void), char *name, double *total_time)
+bool	launch_test(t_test_infos *test, t_test_config *config)
 {
-	int				pid, status, timer_pid;
+	int				timer_pid;
 	int				fd_out[2], fd_err[2];
-	double			elapsed;
-	struct timeval 	start, end;
+	t_timeval 		start, end;
 	
 	if (pipe(fd_out) == -1) exit(1);
 	if (pipe(fd_err) == -1) exit(2);
+
 	gettimeofday(&start, NULL);
-	pid = fork();
-	if (pid == -1) exit(3);
+	test->pid = fork();
+	if (test->pid == -1) exit(3);
 	// Launch test function in a child process
-	if (pid == 0)
-		child_test(f, fd_out, fd_err);
+	if (test->pid == 0)
+		child_test(test->fun, fd_out, fd_err);
+
 	// Main process here because child exit
 	close(fd_out[1]);
 	close(fd_err[1]);
-	timer_pid = settimeout(pid, 1);
-	waitpid(pid, &status, 0);
+	timer_pid = settimeout(test->pid, config->timeout);
+	waitpid(test->pid, &test->status, 0);
+
 	gettimeofday(&end, NULL);
-	elapsed = timediff(end, start);
-	*total_time += elapsed;
-	if (WIFEXITED(status) && WEXITSTATUS(status) == 0)
-		test_passed(name, elapsed);
-	else
-		test_failed(name, fd_out[0], fd_err[0], elapsed, status);
+	test->time = timediff(end, start);
+	if (WIFEXITED(test->status) && WEXITSTATUS(test->status) == 0)
+		test_passed(test->name, test->time);
+	else {
+		test_failed(test, fd_out[0], fd_err[0]);
+		test->failed = true;
+	}
 	close(fd_out[0]);
 	close(fd_err[0]);
 	kill(timer_pid, SIGKILL);
-	return (status != 0);
+	return (test->failed);
 }
 
 uint	nb_tests(t_test tests[])
@@ -124,29 +132,51 @@ uint	nb_tests(t_test tests[])
 	return (i);
 }
 
+void	fill_infos(t_test_infos	*infos, t_test *test)
+{
+	infos->failed = false;
+	infos->time = 0;
+	infos->pid = 0;
+	infos->status = 0;
+	infos->name = test->name;
+	infos->fun = test->f;
+}
+
 void	run_tests(t_test tests[], t_test_config *config)
 {
-	uint	i, failed, nbtests;
-	double	total_time;
+	uint			i, j, failed, nbtests;
+	double			total_time;
+	t_test_infos	*infos;
 
-	i = failed = total_time = 0;
+	i = failed = total_time = j = 0;
 	nbtests = nb_tests(tests);
+	infos = malloc(nbtests * sizeof(*infos));
+	
 	printf("    %sStarting%s %d tests\n", GREEN, RESET, nbtests);
 	printf("------------\n");
 	while (tests[i].f != NULL) {
-		failed += launch_test(tests[i].f, tests[i].name, &total_time);
-		if (config->stop_on_fail && failed)
+		fill_infos(&infos[i], &tests[i]);
+		launch_test(&infos[i], config);
+		failed += infos[i].failed;
+		if (config->stop_on_fail && infos[i].failed)
 			break ;
 		i++;
 	}
-	if (failed && config->stop_on_fail)
+	if (config->stop_on_fail && infos[i].failed)
 		printf("%sCanceling due to test failure%s\n", RED, RESET);
 	printf("------------\n");
-	printf("    %sSummary%s [% 6.2fs] %d/%d tests run: %d %spassed%s, %d %sfailed%s\n",
+	printf("     %sSummary%s [% 6.2fs] %d/%d tests run: %d %spassed%s, %d %sfailed%s\n",
 		GREEN, RESET, total_time, i, nbtests, i - failed, GREEN, RESET, failed, RED, RESET);
+	while (j < i) {
+		if (infos[j].failed)
+			print_test_fail_banner(&infos[j]);
+		j++;
+	}
+	free(infos);
 }
 
 void	init_test_config(t_test_config *config)
 {
 	config->stop_on_fail = false;
+	config->timeout = 1000;
 }

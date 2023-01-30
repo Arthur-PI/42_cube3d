@@ -51,7 +51,6 @@ int	main(void)
 		{NULL, NULL}
 	};
 	init_test_config(&config);
-	config.stop_on_fail = false;
 	
 	run_tests(tests, &config);
 	return (0);

@@ -33,9 +33,20 @@ typedef struct	s_test
 	char	*name;
 }				t_test;
 
+typedef struct	s_test_infos
+{
+	int		pid;
+	int		status;
+	bool	failed;
+	double	time;
+	char	*name;
+	void	(*fun)(void);
+}				t_test_infos;
+
 typedef struct	s_test_config
 {
 	bool	stop_on_fail;
+	uint	timeout;
 }				t_test_config;
 
 void	run_tests(t_test tests[], t_test_config *config);
