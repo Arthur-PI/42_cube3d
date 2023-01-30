@@ -33,7 +33,13 @@ typedef struct	s_test
 	char	*name;
 }				t_test;
 
-void	run_tests(t_test tests[]);
+typedef struct	s_test_config
+{
+	bool	stop_on_fail;
+}				t_test_config;
+
+void	run_tests(t_test tests[], t_test_config *config);
+void	init_test_config(t_test_config *config);
 void	__assert_str_rtn(const char *s1, const char *s2, const char *file, const char *function, int line);
 
 #endif

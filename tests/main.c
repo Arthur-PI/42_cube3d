@@ -30,6 +30,7 @@ void	test4(void)
 void	test5(void)
 {
 	char *s1 = "Lonjour";
+	s1[0] = 'B';
 }
 
 void	test6(void)
@@ -39,15 +40,19 @@ void	test6(void)
 
 int	main(void)
 {
-	t_test	tests[] = {
+	t_test_config	config;
+	t_test			tests[] = {
 		{&test1, "main::test1"},
-		{&test2, "main::test2"},
+		{&test5, "main::test5"},
 		{&test3, "main::test3"},
 		{&test4, "main::test4"},
-		{&test5, "main::test5"},
+		{&test2, "main::test2"},
 		{&test6, "main::test6"},
 		{NULL, NULL}
 	};
-	run_tests(tests);
+	init_test_config(&config);
+	config.stop_on_fail = false;
+	
+	run_tests(tests, &config);
 	return (0);
 }

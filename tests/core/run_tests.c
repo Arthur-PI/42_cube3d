@@ -124,7 +124,7 @@ uint	nb_tests(t_test tests[])
 	return (i);
 }
 
-void	run_tests(t_test tests[])
+void	run_tests(t_test tests[], t_test_config *config)
 {
 	uint	i, failed, nbtests;
 	double	total_time;
@@ -133,13 +133,20 @@ void	run_tests(t_test tests[])
 	nbtests = nb_tests(tests);
 	printf("    %sStarting%s %d tests\n", GREEN, RESET, nbtests);
 	printf("------------\n");
-	while (tests[i].f != NULL && failed == 0) {
+	while (tests[i].f != NULL) {
 		failed += launch_test(tests[i].f, tests[i].name, &total_time);
+		if (config->stop_on_fail && failed)
+			break ;
 		i++;
 	}
-	if (failed)
+	if (failed && config->stop_on_fail)
 		printf("%sCanceling due to test failure%s\n", RED, RESET);
 	printf("------------\n");
 	printf("    %sSummary%s [% 6.2fs] %d/%d tests run: %d %spassed%s, %d %sfailed%s\n",
 		GREEN, RESET, total_time, i, nbtests, i - failed, GREEN, RESET, failed, RED, RESET);
+}
+
+void	init_test_config(t_test_config *config)
+{
+	config->stop_on_fail = false;
 }
