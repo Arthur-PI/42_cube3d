@@ -9,3 +9,4 @@ cube3d
 .cache
 .env
 .idea
+tests/assets/no_access.cub

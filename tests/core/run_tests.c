@@ -158,8 +158,7 @@ void	run_tests(t_test tests[], t_test_config *config)
 		fill_infos(&infos[i], &tests[i]);
 		launch_test(&infos[i], config);
 		failed += infos[i].failed;
-		if (config->stop_on_fail && infos[i].failed)
-			break ;
+		if (config->stop_on_fail && infos[i].failed) {i++; break;}
 		i++;
 	}
 	if (config->stop_on_fail && infos[i].failed)
