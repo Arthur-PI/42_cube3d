@@ -168,7 +168,8 @@ fclean:	clean
 	@echo "$(PROJECT): $(RED)Supressing program file$(RESET)"
 	@rm -f $(NAME)
 
-re:	fclean all
+re:	fclean
+	$(MAKE) all
 
 .PHONY:	all clean fclean re
 
