@@ -24,6 +24,22 @@ static t_player	*init_player(void)
 	return (player);
 }
 
+t_textures	*init_textures(void)
+{
+	t_textures	*textures;
+
+	textures = malloc(sizeof(*textures));
+	if (!textures)
+		return (DEBUG("malloc error"), NULL);
+	textures->ceiling = 0;
+	textures->floor = 0;
+	textures->wall_north = NULL;
+	textures->wall_south = NULL;
+	textures->wall_west = NULL;
+	textures->wall_east = NULL;
+	return (textures);
+}
+
 t_map	*init_map(void)
 {
 	t_map	*map;

@@ -68,6 +68,7 @@ MLX			= $(MLX_DIR)/libmlx.a
 
 ### SOURCE FILES ###
 SRCS	+=	error.c \
+			utils/trim_end.c \
 			parser/parse_file.c \
 			parser/tokens_to_game.c \
 			parser/get_tokens.c \
@@ -77,6 +78,7 @@ SRCS	+=	error.c \
 			parser/get_map.c \
 			parser/init.c \
 			parser/get_textures.c \
+			parser/is_wall_texture.c \
 			parser/validators/valid_file.c \
 			parser/validators/valid_map.c \
 			parser/validators/valid_colors.c \

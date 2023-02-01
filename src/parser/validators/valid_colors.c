@@ -23,7 +23,7 @@ static bool	check_color(char *color)
 	{
 		if (color[i] == ',')
 			nb_comma++;
-		else if (!ft_isdigit(color[i]))
+		else if (!ft_isdigit(color[i]) && !ft_isspace(color[i]))
 			return (DEBUG("invalid floor or ceiling color"), false);
 		i++;
 	}

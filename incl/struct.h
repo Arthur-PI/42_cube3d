@@ -35,6 +35,7 @@ typedef struct s_token
 	char			*value;
 }				t_token;
 
+// pos[0] -> x, pos[1] -> y
 typedef struct s_player
 {
 	int	pos[2];
@@ -74,12 +75,13 @@ typedef struct s_game
 	t_textures	*textures;
 }				t_game;
 
-void	free_token(void *ptr);
-void	free_game(t_game *game);
-void	free_map(t_map *map);
-void	free_points(char **points);
+void		free_token(void *ptr);
+void		free_game(t_game *game);
+void		free_map(t_map *map);
+void		free_points(char **points);
 
-t_game	*init_game(void);
-t_map	*init_map(void);
+t_game		*init_game(void);
+t_map		*init_map(void);
+t_textures	*init_textures(void);
 
 #endif

@@ -12,22 +12,31 @@
 
 #include "parser.h"
 
-static bool	add_map_row(t_map *map, t_token *token)
+static uint	tablen(char **data)
+{
+	uint	i;
+
+	i = 0;
+	while (data[i])
+		i++;
+	return (i);
+}
+
+static char	*add_map_row(t_map *map, t_token *token)
 {
 	uint	i;
 	uint	len;
 	char	**new_points;
 	char	*new_row;
 
-	len = 0;
-	while (map->points[len])
-		len++;
+	len = tablen(map->points);
 	new_points = malloc((++len + 1) * sizeof(*new_points));
 	if (!new_points)
-		return (DEBUG("malloc error"), false);
+		return (DEBUG("malloc error"), NULL);
 	new_row = ft_strdup(token->value);
 	if (!new_row)
-		return (DEBUG("malloc error"), free(new_points), false);
+		return (DEBUG("malloc error"), free(new_points), NULL);
+	trim_end(new_row);
 	i = 0;
 	while (i < (len - 1))
 	{
@@ -38,7 +47,7 @@ static bool	add_map_row(t_map *map, t_token *token)
 	new_points[i] = NULL;
 	free(map->points);
 	map->points = new_points;
-	return (true);
+	return (new_row);
 }
 
 static bool	isplayer(char c)
@@ -50,30 +59,38 @@ static bool	isplayer(char c)
 	return (false);
 }
 
-static void	set_player_pos(t_player *player, char *row, uint y)
+static bool	set_player_pos(t_map *map)
 {
-	uint		i;
-	static bool	pos_found = false;
+	uint	i;
+	uint	j;
+	bool	found;
 
-	if (!pos_found)
+	i = -1;
+	found = false;
+	while (++i < map->height)
 	{
-		i = 0;
-		while (row[i])
+		j = 0;
+		while (j < map->width)
 		{
-			if (isplayer(row[i]))
+			if (isplayer(map->points[i][j]))
 			{
-				player->pos[0] = i;
-				player->pos[1] = y;
-				pos_found = true;
-				return ;
+				if (found)
+					return (DEBUG("Too many players on the map !"), false);
+				map->player->pos[0] = j;
+				map->player->pos[1] = i;
+				found = true;
 			}
-			i++;
+			j++;
 		}
 	}
+	if (!found)
+		DEBUG("No player found on the map !");
+	return (found);
 }
 
 t_map	*get_map(t_list *tokens)
 {
+	char	*row;
 	t_map	*map;
 	t_token	*token;
 
@@ -85,13 +102,15 @@ t_map	*get_map(t_list *tokens)
 		token = tokens->content;
 		if (token->type == TOKEN_MAP)
 		{
-			if (!add_map_row(map, token))
+			row = add_map_row(map, token);
+			if (!row)
 				return (free_map(map), NULL);
-			set_player_pos(map->player, token->value, map->height);
-			map->width = MAX(map->width, ft_strlen(token->value));
+			map->width = MAX(map->width, ft_strlen(row));
 			map->height++;
 		}
 		tokens = tokens->next;
 	}
+	if (!set_player_pos(map))
+		return (free_map(map), NULL);
 	return (map);
 }
