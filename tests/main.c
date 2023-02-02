@@ -1,7 +1,7 @@
 #include "test.h"
 #include "cube3d.h"
 
-void	test_valid_file(void)
+static void	test_valid_file(void)
 {
 	assert(!valid_file("./"));
 	assert(!valid_file("./src/main.c"));
@@ -19,7 +19,7 @@ void	test_valid_file(void)
 	assert(valid_file("./maps/simple.cub"));
 }
 
-void	check_game(t_game *game, uint h, uint w, int pos[2])
+static void	check_game(t_game *game, uint h, uint w, int pos[2])
 {
 	assert(game != NULL);
 	// printf("Dimensions: (%d,%d)\n", game->map->height, game->map->width);
@@ -30,7 +30,7 @@ void	check_game(t_game *game, uint h, uint w, int pos[2])
 	assert(game->map->player->pos[1] == pos[1]);
 }
 
-void	test_parse_file(void)
+static void	test_parse_file(void)
 {
 	t_game	*game;
 
@@ -38,6 +38,33 @@ void	test_parse_file(void)
 	check_game(game, 5, 6, (int[2]){4, 3});
 	game = parse_file("./tests/assets/maps/map2.cub");
 	check_game(game, 5, 6, (int[2]){4, 3});
+	game = parse_file("./tests/assets/maps/map3.cub");
+	assert(game == NULL);
+	game = parse_file("./tests/assets/maps/map4.cub");
+	assert(game == NULL);
+	game = parse_file("./tests/assets/maps/map5.cub");
+	assert(game == NULL);
+	game = parse_file("./tests/assets/maps/map6.cub");
+	check_game(game, 5, 6, (int[2]){4, 3});
+	game = parse_file("./tests/assets/maps/map7.cub");
+	assert(game == NULL);
+	game = parse_file("./tests/assets/maps/map8.cub");
+	assert(game == NULL);
+	game = parse_file("./tests/assets/maps/map9.cub");
+	assert(game == NULL);
+	game = parse_file("./tests/assets/maps/map10.cub");
+	check_game(game, 5, 6, (int[2]){4, 3});
+	game = parse_file("./tests/assets/maps/map11.cub");
+	assert(game == NULL);
+	game = parse_file("./tests/assets/maps/map12.cub");
+	assert(game == NULL);
+	game = parse_file("./tests/assets/maps/map13.cub");
+	check_game(game, 5, 9, (int[2]){4, 3});
+	game = parse_file("./tests/assets/maps/map14.cub");
+	// This one should not work once wall checking is done
+	check_game(game, 5, 6, (int[2]){4, 3});
+	game = parse_file("./tests/assets/maps/map15.cub");
+	check_game(game, 14, 33, (int[2]){26, 11});
 }
 
 int	main(void)

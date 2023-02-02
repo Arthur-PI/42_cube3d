@@ -14,7 +14,9 @@
 # define UTILS_H
 
 # include "libft.h"
+# include "struct.h"
 
 void	trim_end(char *s);
+void	print_game(t_game *game);
 
 #endif
