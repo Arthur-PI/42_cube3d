@@ -49,7 +49,7 @@ static void	print_tokens(t_list *tokens)
  * filename: the path to the file to parse,
  * returns: a pointer to a t_game struct
  */
-void	*parse_file(const char *filename)
+t_game	*parse_file(const char *filename)
 {
 	char	*trim_name;
 	t_list	*tokens;

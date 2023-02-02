@@ -12,15 +12,6 @@
 
 #include "parser.h"
 
-static bool	is_wall_texture(t_token_type type)
-{
-	if (type == TOKEN_NORTH || type == TOKEN_SOUTH)
-		return (true);
-	if (type == TOKEN_WEST || type == TOKEN_EAST)
-		return (true);
-	return (false);
-}
-
 static t_texture	*create_texture(char *file)
 {
 	t_texture	*texture;
@@ -105,22 +96,6 @@ static int	fill_floor_ceiling(t_list *tokens, t_textures *textures)
 		tokens = tokens->next;
 	}
 	return (1);
-}
-
-static t_textures	*init_textures(void)
-{
-	t_textures	*textures;
-
-	textures = malloc(sizeof(*textures));
-	if (!textures)
-		return (DEBUG("malloc error"), NULL);
-	textures->ceiling = 0;
-	textures->floor = 0;
-	textures->wall_north = NULL;
-	textures->wall_south = NULL;
-	textures->wall_west = NULL;
-	textures->wall_east = NULL;
-	return (textures);
 }
 
 t_textures	*get_textures(t_list *tokens)

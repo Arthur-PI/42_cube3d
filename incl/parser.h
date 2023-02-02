@@ -22,13 +22,14 @@
 # include "get_next_line.h"
 # include "error.h"
 # include "struct.h"
+# include "utils.h"
 
 # define GOOD 1
 # define ERROR_TOKEN -1
 
 # define MAX(a, b) ((a) < (b) ? (b) : (a))
 
-void		*parse_file(const char *filename);
+t_game		*parse_file(const char *filename);
 t_list		*get_tokens(const char *filename);
 t_token		*create_token(char *s, t_token_type type);
 bool		valid_file(const char *filename);
@@ -41,5 +42,6 @@ t_game		*tokens_to_game(t_list *tokens);
 bool		can_escape_map(t_map *map);
 t_map		*get_map(t_list *tokens);
 t_textures	*get_textures(t_list *tokens);
+bool		is_wall_texture(t_token_type type);
 
 #endif

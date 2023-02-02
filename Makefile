@@ -10,6 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
+PROJECT	= cube3d
 
 ### COMPILATION ###
 CC		= cc
@@ -22,6 +23,10 @@ INCLUDE	= -I$(H_DIR) -I$(LIBFT_DIR)/$(H_DIR) -I$(MLX_DIR)
 LFLAGS	= -L$(LIBFT_DIR) -L$(MLX_DIR)
 LINKS	= -lm -lft -lmlx -lX11 -lXext
 VFLAGS	=
+
+### EXECUTABLE ###
+NAME	= $(PROJECT)
+ARGS	= ./maps/simple.cub
 
 ### ENV VARIABLES ###
 -include .env
@@ -43,19 +48,18 @@ ifeq ($(FASAN),true)
 	CFLAGS += -fsanitize=address
 endif
 
-ifeq ($(FTEST),true)
-	SRCS	= test_main.c
+ifeq (test, $(filter test,$(MAKECMDGOALS)))
+	NAME	= bin/test
+	SRCS	= tests/core/run_tests.c \
+			  tests/main.c
 else
 	SRCS	= main.c
 endif
 
-### EXECUTABLE ###
-NAME	= cube3d
-ARGS	= ./maps/simple.cub
-
 ### INCLUDES ###
 OBJ_DIR		= bin
 SRC_DIR		= src
+TEST_DIR	= tests
 H_DIR		= incl
 LIBFT_DIR	= libft
 LIBFT		= $(LIBFT_DIR)/libft.a
@@ -64,6 +68,8 @@ MLX			= $(MLX_DIR)/libmlx.a
 
 ### SOURCE FILES ###
 SRCS	+=	error.c \
+			utils/trim_end.c \
+			utils/print_game.c \
 			parser/parse_file.c \
 			parser/tokens_to_game.c \
 			parser/get_tokens.c \
@@ -73,6 +79,7 @@ SRCS	+=	error.c \
 			parser/get_map.c \
 			parser/init.c \
 			parser/get_textures.c \
+			parser/is_wall_texture.c \
 			parser/validators/valid_file.c \
 			parser/validators/valid_map.c \
 			parser/validators/valid_colors.c \
@@ -114,25 +121,27 @@ endif
 all:	$(NAME)
 
 $(LIBFT):
-	@echo "$(NAME): $(GREEN)Compiling $(LIBFT_DIR)$(RESET)"
+	@echo "$(PROJECT): $(GREEN)Compiling $(LIBFT_DIR)$(RESET)"
 	@$(MAKE) addon -C $(LIBFT_DIR)
 
 $(MLX):
-	@echo "$(NAME): $(GREEN)Compiling $(MLX_DIR)$(RESET)"
+	@echo "$(PROJECT): $(GREEN)Compiling $(MLX_DIR)$(RESET)"
 	@$(MAKE) -C $(MLX_DIR)
 
-$(NAME):	$(LIBFT) $(MLX) $(OBJ_DIR) $(OBJS)
+$(NAME):	$(LIBFT) $(MLX) $(OBJS)
 	@$(CC) $(CFLAGS) $(LFLAGS) $(OBJS) $(LINKS) -o $(NAME)
-	@echo "$(NAME): $(BLUE)Creating program file -> $(WHITE)$(notdir $@)... $(GREEN)[Done]$(RESET)"
-	@echo "$(NAME): $(GREEN)Project successfully compiled$(RESET)"
+	@echo "$(PROJECT): $(BLUE)Creating program file -> $(WHITE)$(notdir $@)... $(GREEN)[Done]$(RESET)"
+	@echo "$(PROJECT): $(GREEN)Project successfully compiled$(RESET)"
 
-$(OBJ_DIR):
-	@mkdir -p $(OBJ_DIR)
-
-$(OBJ_DIR)/%.o:	$(SRC_DIR)/%.c
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) $(INCLUDE) $(VFLAGS) -c $< -o $@
-	@echo "$(NAME): $(BLUE)Creating object file -> $(WHITE)$(notdir $@)... $(GREEN)[Done]$(RESET)"
+	@echo "$(PROJECT): $(BLUE)Creating object file -> $(WHITE)$(notdir $@)... $(GREEN)[Done]$(RESET)"
+
+$(OBJ_DIR)/$(TEST_DIR)/%.o: $(TEST_DIR)/%.c
+	@mkdir -p $(dir $@)
+	@$(CC) $(CFLAGS) $(INCLUDE) $(VFLAGS) -c $< -o $@
+	@echo "$(PROJECT): $(BLUE)Creating test object file -> $(WHITE)$(notdir $@)... $(GREEN)[Done]$(RESET)"
 
 run: $(NAME)
 	@./$(NAME) $(ARGS)
@@ -140,25 +149,30 @@ run: $(NAME)
 val: $(NAME)
 	@$(VALGRIND) ./$(NAME) $(ARGS)
 
+test: all
+	@./$(NAME)
+
 info:
 	@echo "$(BLUE)NAME$(RESET): $(NAME)"
 	@echo "$(BLUE)CFLAGS$(RESET): $(CFLAGS)"
 	@echo "$(BLUE)INCLUDE$(RESET): $(INCLUDE)"
 	@echo "$(BLUE)LFLAGS$(RESET): $(LFLAGS)"
 	@echo "$(BLUE)LINKS$(RESET): $(LINKS)"
+	@echo "$(BLUE)SRCS$(RESET): $(SRCS)"
 
 clean:
 	@$(MAKE) clean -C $(LIBFT_DIR)
 	@$(MAKE) clean -C $(MLX_DIR)
-	@echo "$(NAME): $(RED)Supressing object files$(RESET)"
+	@echo "$(PROJECT): $(RED)Supressing object files$(RESET)"
 	@rm -rf $(OBJ_DIR)
 
 fclean:	clean
 	@$(MAKE) fclean -C $(LIBFT_DIR)
-	@echo "$(NAME): $(RED)Supressing program file$(RESET)"
+	@echo "$(PROJECT): $(RED)Supressing program file$(RESET)"
 	@rm -f $(NAME)
 
-re:	fclean all
+re:	fclean
+	$(MAKE) all
 
 .PHONY:	all clean fclean re
 
