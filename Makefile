@@ -15,9 +15,6 @@ PROJECT	= cube3d
 ### COMPILATION ###
 CC		= cc
 CFLAGS	= -Wall -Wextra
-CFLAGS	+= -Wshadow -Wpedantic -Wuninitialized -Wmissing-include-dirs -Wundef -Winvalid-pch
-CFLAGS	+= -Winit-self -Wswitch-enum -Wswitch-default -Wformat=2 -Wformat-nonliteral -Wformat-security -Wformat-y2k
-CFLAGS	+= -Wdouble-promotion -Wfloat-equal -Wpointer-arith
 CFLAGS	+= -MMD -MP
 INCLUDE	= -I$(H_DIR) -I$(LIBFT_DIR)/$(H_DIR) -I$(MLX_DIR)
 LFLAGS	= -L$(LIBFT_DIR) -L$(MLX_DIR)
@@ -33,15 +30,22 @@ ARGS	= ./maps/simple.cub
 FDEBUG		?= false
 FTEST		?= false
 FNOERROR	?= false
+FEXTRA		?= false
 FASAN		?= false
+
+ifeq ($(FNOERROR),false)
+	CFLAGS += -Werror
+endif
+
+ifeq ($(FEXTRA),true)
+	CFLAGS	+= -Wshadow -Wpedantic -Wuninitialized -Wmissing-include-dirs -Wundef -Winvalid-pch
+	CFLAGS	+= -Winit-self -Wswitch-enum -Wswitch-default -Wformat=2 -Wformat-nonliteral -Wformat-security -Wformat-y2k
+	CFLAGS	+= -Wdouble-promotion -Wfloat-equal -Wpointer-arith
+endif
 
 ifeq ($(FDEBUG),true)
 	CFLAGS += -g3
 	VFLAGS += -D DEBUG_MODE
-endif
-
-ifeq ($(FNOERROR),false)
-	CFLAGS += -Werror
 endif
 
 ifeq ($(FASAN),true)
