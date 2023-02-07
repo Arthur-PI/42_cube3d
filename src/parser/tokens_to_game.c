@@ -12,6 +12,31 @@
 
 #include "parser.h"
 
+static bool	uniformise_map(t_map *map)
+{
+	uint	i;
+	uint	len;
+	char	*tmp;
+
+	i = 0;
+	while (map->points[i])
+	{
+		len = ft_strlen(map->points[i]);
+		if (len < map->width)
+		{
+			tmp = malloc(map->width + 1);
+			if (!tmp)
+				return (DEBUG("malloc error"), false);
+			ft_memmove(tmp, map->points[i], len);
+			ft_memset(tmp + len, 0, (map->width - len) + 1);
+			free(map->points[i]);
+			map->points[i] = tmp;
+		}
+		i++;
+	}
+	return (true);
+}
+
 t_game	*tokens_to_game(t_list *tokens)
 {
 	t_game	*game;
@@ -23,7 +48,9 @@ t_game	*tokens_to_game(t_list *tokens)
 	game->textures = get_textures(tokens);
 	if (!game->map || !game->textures)
 		return (free_game(game), NULL);
-	if (!can_escape_map(game->map))
+	if (!uniformise_map(game->map))
+		return (free_game(game), NULL);
+	if (can_escape_map(game->map))
 		return (free_game(game), NULL);
 	return (game);
 }

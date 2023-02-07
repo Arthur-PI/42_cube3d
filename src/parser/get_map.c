@@ -67,10 +67,10 @@ static bool	set_player_pos(t_map *map)
 
 	i = -1;
 	found = false;
-	while (++i < map->height)
+	while (map->points[++i])
 	{
 		j = 0;
-		while (j < map->width)
+		while (map->points[i][j])
 		{
 			if (isplayer(map->points[i][j]))
 			{

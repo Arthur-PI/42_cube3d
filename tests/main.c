@@ -61,10 +61,13 @@ static void	test_parse_file(void)
 	game = parse_file("./tests/assets/maps/map13.cub");
 	check_game(game, 5, 9, (int[2]){4, 3});
 	game = parse_file("./tests/assets/maps/map14.cub");
-	// This one should not work once wall checking is done
-	check_game(game, 5, 6, (int[2]){4, 3});
+	assert(game == NULL);
 	game = parse_file("./tests/assets/maps/map15.cub");
 	check_game(game, 14, 33, (int[2]){26, 11});
+	game = parse_file("./tests/assets/maps/map16.cub");
+	assert(game == NULL);
+	game = parse_file("./tests/assets/maps/map17.cub");
+	assert(game == NULL);
 }
 
 int	main(void)
