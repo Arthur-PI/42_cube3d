@@ -96,6 +96,7 @@ SRCS	+=	error.c \
 			graphics/load_textures.c \
 			graphics/init_graphics.c \
 			graphics/setup_hooks.c \
+			graphics/img_pixel_put.c \
 
 ### OBJECTS ###
 OBJS	= $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))

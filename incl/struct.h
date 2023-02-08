@@ -75,6 +75,15 @@ typedef struct s_game
 	t_textures	*textures;
 }				t_game;
 
+typedef struct s_img
+{
+	int		endian;
+	int		line_length;
+	int		bits_per_pixel;
+	char	*addr;
+	void	*img;
+}				t_img;
+
 void		free_token(void *ptr);
 void		free_game(t_game *game);
 void		free_map(t_map *map);
