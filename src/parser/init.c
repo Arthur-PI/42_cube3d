@@ -50,8 +50,10 @@ t_map	*init_map(void)
 	map->height = 0;
 	map->width = 0;
 	map->player = init_player();
+	if (!map->player)
+		return (DEBUG("malloc error"), free_map(map), NULL);
 	map->points = malloc (sizeof(*(map->points)));
-	if (!map->points || !map->player)
+	if (!map->points)
 		return (DEBUG("malloc error"), free_map(map), NULL);
 	map->points[0] = NULL;
 	return (map);

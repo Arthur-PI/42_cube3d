@@ -22,7 +22,7 @@ static t_texture	*create_texture(char *file)
 	texture->img = NULL;
 	texture->file = ft_strdup(file);
 	if (!texture->file)
-		return (DEBUG(MSG_MALLOC_ERROR), free(texture), NULL);
+		return (free(texture), DEBUG(MSG_MALLOC_ERROR), NULL);
 	return (texture);
 }
 
@@ -45,7 +45,7 @@ static int	fill_wall_textures(t_list *tokens, t_textures *textures)
 				textures->wall_south = texture;
 			else if (token->type == TOKEN_WEST)
 				textures->wall_west = texture;
-			else if (token->type == TOKEN_EAST)
+			else
 				textures->wall_east = texture;
 		}
 		tokens = tokens->next;

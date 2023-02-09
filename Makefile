@@ -170,6 +170,11 @@ clean:
 	@echo "$(PROJECT): $(RED)Supressing object files$(RESET)"
 	@rm -rf $(OBJ_DIR)
 
+check:
+	@clang-tidy src/**.c -- $(INCLUDE) && echo "clang-tidy: Passed" || echo "clang-tidy: Failed"
+	@cppcheck -q src $(INCLUDE) --error-exitcode=2 && echo "cppcheck: Passed" || echo "cppcheck: Failed"
+	@flawfinder -Q src && echo "flawfinder: Passed" || echo "flawfinder: Failed"
+
 fclean:	clean
 	@$(MAKE) fclean -C $(LIBFT_DIR)
 	@echo "$(PROJECT): $(RED)Supressing program file$(RESET)"
