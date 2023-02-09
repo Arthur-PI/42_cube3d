@@ -67,11 +67,21 @@ typedef struct s_textures
 	t_texture	*wall_east;
 }				t_textures;
 
+typedef struct s_img
+{
+	int		endian;
+	int		line_length;
+	int		bits_per_pixel;
+	char	*addr;
+	void	*img;
+}				t_img;
+
 typedef struct s_game
 {
 	t_map		*map;
 	void		*mlx;
 	void		*win;
+	t_img		*img;
 	t_textures	*textures;
 }				t_game;
 

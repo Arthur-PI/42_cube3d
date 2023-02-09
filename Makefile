@@ -96,6 +96,10 @@ SRCS	+=	error.c \
 			graphics/load_textures.c \
 			graphics/init_graphics.c \
 			graphics/setup_hooks.c \
+			graphics/img_pixel_put.c \
+			graphics/free_img.c \
+			graphics/render_img.c \
+			graphics/new_image.c \
 
 ### OBJECTS ###
 OBJS	= $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
@@ -171,9 +175,9 @@ clean:
 	@rm -rf $(OBJ_DIR)
 
 check:
-	@clang-tidy src/**.c -- $(INCLUDE) && echo "clang-tidy: Passed" || echo "clang-tidy: Failed"
-	@cppcheck -q src $(INCLUDE) --error-exitcode=2 && echo "cppcheck: Passed" || echo "cppcheck: Failed"
-	@flawfinder -Q src && echo "flawfinder: Passed" || echo "flawfinder: Failed"
+	@clang-tidy src/**.c -- $(INCLUDE) && echo "$(BLUE)clang-tidy$(RESET): $(GREEN)Passed$(RESET)" || echo "$(BLUE)clang-tidy$(RESET): $(RED)Failed$(RESET)"
+	@cppcheck -q src $(INCLUDE) --error-exitcode=2 && echo "$(BLUE)cppcheck$(RESET): $(GREEN)Passed$(RESET)" || echo "$(BLUE)cppcheck$(RESET): $(RED)Failed$(RESET)"
+	@flawfinder -Q src && echo "$(BLUE)flawfinder$(RESET): $(GREEN)Passed$(RESET)" || echo "$(BLUE)flawfinder$(RESET): $(RED)Failed$(RESET)"
 
 fclean:	clean
 	@$(MAKE) fclean -C $(LIBFT_DIR)
