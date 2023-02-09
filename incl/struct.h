@@ -67,14 +67,6 @@ typedef struct s_textures
 	t_texture	*wall_east;
 }				t_textures;
 
-typedef struct s_game
-{
-	t_map		*map;
-	void		*mlx;
-	void		*win;
-	t_textures	*textures;
-}				t_game;
-
 typedef struct s_img
 {
 	int		endian;
@@ -83,6 +75,15 @@ typedef struct s_img
 	char	*addr;
 	void	*img;
 }				t_img;
+
+typedef struct s_game
+{
+	t_map		*map;
+	void		*mlx;
+	void		*win;
+	t_img		*img;
+	t_textures	*textures;
+}				t_game;
 
 void		free_token(void *ptr);
 void		free_game(t_game *game);

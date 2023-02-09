@@ -70,5 +70,6 @@ t_game	*init_game(void)
 	game->textures = NULL;
 	game->mlx = NULL;
 	game->win = NULL;
+	game->img = NULL;
 	return (game);
 }

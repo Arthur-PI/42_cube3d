@@ -1,30 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_graphics.c                                    :+:      :+:    :+:   */
+/*   new_image.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apigeon <apigeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/03 23:10:22 by apigeon           #+#    #+#             */
-/*   Updated: 2023/01/03 23:10:24 by apigeon          ###   ########.fr       */
+/*   Created: 2022/07/14 12:10:26 by apigeon           #+#    #+#             */
+/*   Updated: 2022/12/11 20:43:11 by apigeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "graphics.h"
 
-int	init_graphics(t_game *game)
+t_img	*new_image(void *mlx)
 {
 	t_img	*img;
 
-	game->mlx = mlx_init();
-	if (!game->mlx)
-		return (DEBUG("can't instanciate mlx"), -1);
-	game->win = mlx_new_window(game->mlx, WIN_WIDTH, WIN_HEIGHT, WIN_TITLE);
-	if (!game->win)
-		return (DEBUG("can't instanciate mlx window"), -1);
-	img = new_image(game->mlx);
+	img = malloc(sizeof(*img));
 	if (!img)
-		return (DEBUG("can't create a new image"), -1);
-	render_img(game, new_image(game->mlx));
-	return (1);
+		return (DEBUG("malloc error"), NULL);
+	img->img = mlx_new_image(mlx, WIN_WIDTH, WIN_HEIGHT);
+	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel,
+			&img->line_length, &img->endian);
+	return (img);
 }
