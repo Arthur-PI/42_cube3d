@@ -29,6 +29,14 @@ typedef enum e_token_type
 	TOKEN_FLOOR
 }			t_token_type;
 
+typedef enum e_direction
+{
+	UP,
+	DOWN,
+	LEFT,
+	RIGHT
+}			t_direction;
+
 typedef struct s_token
 {
 	t_token_type	type;

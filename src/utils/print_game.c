@@ -12,6 +12,15 @@
 
 #include "utils.h"
 
+void	print_map(t_map *map)
+{
+	int	i;
+
+	i = 0;
+	while (map->points[i])
+		printf("%s\n", map->points[i++]);
+}
+
 void	print_game(t_game *game)
 {
 	int	i;

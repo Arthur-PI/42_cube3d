@@ -74,6 +74,7 @@ MLX			= $(MLX_DIR)/libmlx.a
 SRCS	+=	error.c \
 			utils/trim_end.c \
 			utils/print_game.c \
+			utils/move_player.c \
 			parser/parse_file.c \
 			parser/tokens_to_game.c \
 			parser/get_tokens.c \
