@@ -74,6 +74,8 @@ static void	test_parse_file(void)
 	assert(game == NULL);
 	game = parse_file("./tests/assets/maps/map17.cub");
 	assert(game == NULL);
+	game = parse_file("./tests/assets/maps/map18.cub");
+	check_game(game, 5, 5, (int[2]){1, 2});
 }
 
 void	test_move_player(void)
