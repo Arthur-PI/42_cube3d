@@ -1,0 +1,3 @@
+clean mlx to real one
+clean DEBUG macro
+clean tests dir
