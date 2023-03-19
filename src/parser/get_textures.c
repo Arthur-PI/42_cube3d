@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_textures.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apigeon <apigeon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 19:17:03 by apigeon           #+#    #+#             */
-/*   Updated: 2022/12/29 19:17:04 by apigeon          ###   ########.fr       */
+/*   Updated: 2023/03/19 12:16:01 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static t_texture	*create_texture(char *file)
 	texture->img = NULL;
 	texture->file = ft_strdup(file);
 	if (!texture->file)
-		return (free(texture), DEBUG(MSG_MALLOC_ERROR), NULL);
+		return (free(texture), (void)DEBUG(MSG_MALLOC_ERROR), NULL);
 	return (texture);
 }
 
