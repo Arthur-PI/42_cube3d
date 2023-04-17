@@ -1,22 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cube3d.h                                           :+:      :+:    :+:   */
+/*   engine.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/14 12:16:34 by apigeon           #+#    #+#             */
-/*   Updated: 2023/03/22 22:11:19 by oaarsse          ###   ########.fr       */
+/*   Created: 2023/03/22 21:58:41 by oaarsse           #+#    #+#             */
+/*   Updated: 2023/04/17 22:20:36 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUBE3D_H
-# define CUBE3D_H
+#ifndef ENGINE_H
+# define ENGINE_H
 
 # include <stdio.h>
+# include <math.h>
 # include "libft.h"
 # include "parser.h"
 # include "graphics.h"
-# include "engine.h"
+# include "constant.h"
+
+void	render(t_game	*game);
 
 #endif

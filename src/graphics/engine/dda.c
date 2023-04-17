@@ -1,22 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cube3d.h                                           :+:      :+:    :+:   */
+/*   dda.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/14 12:16:34 by apigeon           #+#    #+#             */
-/*   Updated: 2023/03/22 22:11:19 by oaarsse          ###   ########.fr       */
+/*   Created: 2023/03/22 23:30:04 by oaarsse           #+#    #+#             */
+/*   Updated: 2023/03/22 23:33:14 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUBE3D_H
-# define CUBE3D_H
+#include "engine.h"
 
-# include <stdio.h>
-# include "libft.h"
-# include "parser.h"
-# include "graphics.h"
-# include "engine.h"
-
-#endif
+// Digital Differential Analysis
+// algorithm used on square grids to find which squares a line hits
+int	dda(void)
+{
+	return (0);
+}

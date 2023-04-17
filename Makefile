@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: apigeon <marvin@42.fr>                     +#+  +:+       +#+         #
+#    By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/30 16:08:04 by apigeon           #+#    #+#              #
-#    Updated: 2022/12/13 17:38:47 by apigeon          ###   ########.fr        #
+#    Updated: 2023/03/22 22:10:46 by oaarsse          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -101,6 +101,7 @@ SRCS	+=	error.c \
 			graphics/free_img.c \
 			graphics/render_img.c \
 			graphics/new_image.c \
+			graphics/engine/render.c
 
 ### OBJECTS ###
 OBJS	= $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))

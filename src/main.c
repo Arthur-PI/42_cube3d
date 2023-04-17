@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apigeon <apigeon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 12:10:26 by apigeon           #+#    #+#             */
-/*   Updated: 2022/12/11 20:43:11 by apigeon          ###   ########.fr       */
+/*   Updated: 2023/03/22 22:16:50 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int	main(int ac, char **av)
 		return (free_game(game), 3);
 	if (load_textures(game->mlx, game->textures) == -1)
 		return (free_game(game), 4);
+	render(game);
 	setup_hooks(game);
 	mlx_loop(game->mlx);
 	free_game(game);
