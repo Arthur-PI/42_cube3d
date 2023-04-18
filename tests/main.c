@@ -80,9 +80,9 @@ static void	test_parse_file(void)
 
 void	test_move_player(void)
 {
-	t_game		*game;
-	t_map		*map;
-	t_player	*player;
+	t_game			*game;
+	t_map			*map;
+	t_player_pos	*player;
 
 	game = parse_file("./tests/assets/maps/map1.cub");
 	map = game->map;

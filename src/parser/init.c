@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apigeon <apigeon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 17:48:34 by apigeon           #+#    #+#             */
-/*   Updated: 2022/12/29 17:48:35 by apigeon          ###   ########.fr       */
+/*   Updated: 2023/04/18 13:56:05 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "struct.h"
 
-static t_player	*init_player(void)
+static t_player_pos	*init_player(void)
 {
-	t_player	*player;
+	t_player_pos	*player;
 
 	player = malloc(sizeof(*player));
 	if (!player)

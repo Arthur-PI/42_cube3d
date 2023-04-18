@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   free_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apigeon <apigeon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 17:48:01 by apigeon           #+#    #+#             */
-/*   Updated: 2022/12/29 17:48:02 by apigeon          ###   ########.fr       */
+/*   Updated: 2023/04/18 13:55:35 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "struct.h"
 
-static void	free_player(t_player *player)
+static void	free_player(t_player_pos *player)
 {
 	if (player)
 	{
