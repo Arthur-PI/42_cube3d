@@ -6,7 +6,7 @@
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 17:47:13 by apigeon           #+#    #+#             */
-/*   Updated: 2023/04/18 13:55:25 by oaarsse          ###   ########.fr       */
+/*   Updated: 2023/04/18 15:33:29 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdlib.h>
 # include <sys/types.h>
 # include "error.h"
+# include "player.h"
 
 typedef enum e_token_type
 {
@@ -91,6 +92,7 @@ typedef struct s_game
 	void		*win;
 	t_img		*img;
 	t_textures	*textures;
+	t_player	player;
 }				t_game;
 
 void		free_token(void *ptr);

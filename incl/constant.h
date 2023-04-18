@@ -6,17 +6,17 @@
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 20:13:14 by apigeon           #+#    #+#             */
-/*   Updated: 2023/03/22 23:22:48 by oaarsse          ###   ########.fr       */
+/*   Updated: 2023/04/18 17:51:53 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CONSTANT_H
 # define CONSTANT_H
 
-# define WIN_WIDTH 1000
-# define WIN_HEIGHT 500
+# define WIN_WIDTH 640
+# define WIN_HEIGHT 480
 # define WIN_TITLE "Cube3D"
-# define FOV 90
+# define FOV 66
 
 # define ON_DESTROY 17
 # define ON_KEYDOWN 2

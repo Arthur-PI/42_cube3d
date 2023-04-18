@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   graphics.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apigeon <apigeon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 23:09:47 by apigeon           #+#    #+#             */
-/*   Updated: 2023/01/03 23:09:50 by apigeon          ###   ########.fr       */
+/*   Updated: 2023/04/18 17:42:05 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,6 @@ void	img_pixel_put(t_img *img, int x, int y, int color);
 void	free_img(void *mlx, t_img *img);
 void	render_img(t_game *game, t_img *img);
 t_img	*new_image(void *mlx);
+void	draw_vertical_line(t_img *img, int x, t_int_vector line, int color);
 
 #endif
