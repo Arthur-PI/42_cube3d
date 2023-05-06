@@ -6,7 +6,7 @@
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 15:34:20 by oaarsse           #+#    #+#             */
-/*   Updated: 2023/05/06 03:00:18 by oaarsse          ###   ########.fr       */
+/*   Updated: 2023/05/06 03:19:23 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,12 @@ bool	init_player(t_game *game)
 	game->player.position.y = y + 0.5;
 	game->player.direction = orientation(game->map->points[x][y]);
 	game->player.camera_plane = plane(game->map->points[x][y]);
+	game->player.forward = false;
+	game->player.backward = false;
+	game->player.left = false;
+	game->player.right = false;
+	game->player.rotate_left = false;
+	game->player.rotate_right = false;
 	game->map->points[x][y] = '0';
 	return (true);
 }
