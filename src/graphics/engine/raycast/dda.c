@@ -6,7 +6,7 @@
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 22:28:44 by oaarsse           #+#    #+#             */
-/*   Updated: 2023/05/05 22:36:58 by oaarsse          ###   ########.fr       */
+/*   Updated: 2023/05/06 03:13:07 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	dda(t_game *game)
 			player->raycasting.wall_side = HORIZONTAL;
 		}
 		if (game->map->points[player->raycasting.map_box.x]
-			[player->raycasting.map_box.y] == '1')
+			[player->raycasting.map_box.y] == WALL)
 			hit = true;
 	}
 }
