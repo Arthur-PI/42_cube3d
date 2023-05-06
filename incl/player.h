@@ -6,12 +6,15 @@
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 14:58:32 by oaarsse           #+#    #+#             */
-/*   Updated: 2023/04/18 17:28:18 by oaarsse          ###   ########.fr       */
+/*   Updated: 2023/05/06 00:55:19 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PLAYER_H
 # define PLAYER_H
+
+# include <stdbool.h>
+# include "struct.h"
 
 // vector struct
 // double x: x coordinate
@@ -46,6 +49,14 @@ typedef struct s_raycasting {
 	t_vector		step;
 	int				wall_side;
 	double			perp_wall_dist;
+	int				wall_height;
+	int				draw_start;
+	int				draw_end;
+
+	t_vector		wall;
+	t_int_vector	txture;
+	double			txture_step;
+	double			txture_pos;
 }	t_raycasting;
 
 /*
@@ -61,6 +72,14 @@ typedef struct s_player
 	t_vector		direction;
 	t_vector		camera_plane;
 	t_raycasting	raycasting;
+
+	bool			forward;
+	bool			backward;
+	bool			left;
+	bool			right;
+
+	bool			rotate_left;
+	bool			rotate_right;
 }	t_player;
 
 #endif

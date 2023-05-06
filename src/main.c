@@ -6,7 +6,7 @@
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 12:10:26 by apigeon           #+#    #+#             */
-/*   Updated: 2023/03/22 22:16:50 by oaarsse          ###   ########.fr       */
+/*   Updated: 2023/05/05 21:56:07 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int	main(int ac, char **av)
 		return (free_game(game), 3);
 	if (load_textures(game->mlx, game->textures) == -1)
 		return (free_game(game), 4);
+	init_player(game);
 	render(game);
 	setup_hooks(game);
 	mlx_loop(game->mlx);

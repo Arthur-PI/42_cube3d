@@ -6,7 +6,7 @@
 #    By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/30 16:08:04 by apigeon           #+#    #+#              #
-#    Updated: 2023/04/18 17:42:21 by oaarsse          ###   ########.fr        #
+#    Updated: 2023/05/06 01:27:29 by oaarsse          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,6 +75,7 @@ SRCS	+=	error.c \
 			utils/trim_end.c \
 			utils/print_game.c \
 			utils/move_player.c \
+			utils/print_map.c \
 			parser/parse_file.c \
 			parser/tokens_to_game.c \
 			parser/get_tokens.c \
@@ -96,15 +97,21 @@ SRCS	+=	error.c \
 			free/free_points.c \
 			graphics/load_textures.c \
 			graphics/init_graphics.c \
-			graphics/setup_hooks.c \
 			graphics/img_pixel_put.c \
 			graphics/free_img.c \
 			graphics/render_img.c \
 			graphics/new_image.c \
 			graphics/draw_vertical_line.c \
+			graphics/texture_pixel.c \
 			graphics/engine/render.c \
-			graphics/engine/dda.c \
-			graphics/engine/player.c 
+			graphics/engine/player.c \
+			graphics/engine/wall.c \
+			graphics/engine/raycast/init.c \
+			graphics/engine/raycast/dda.c \
+			hooks/setup_hooks.c \
+			hooks/game.c \
+			hooks/movements.c \
+			hooks/rotations.c
 
 ### OBJECTS ###
 OBJS	= $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))

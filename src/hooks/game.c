@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cube3d.h                                           :+:      :+:    :+:   */
+/*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/14 12:16:34 by apigeon           #+#    #+#             */
-/*   Updated: 2023/05/06 00:02:42 by oaarsse          ###   ########.fr       */
+/*   Created: 2023/05/06 00:34:12 by oaarsse           #+#    #+#             */
+/*   Updated: 2023/05/06 00:41:15 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUBE3D_H
-# define CUBE3D_H
+#include "hooks.h"
 
-# include <stdio.h>
-# include "libft.h"
-# include "parser.h"
-# include "graphics.h"
-# include "engine.h"
-# include "hooks.h"
-
-#endif
+int	game_loop(t_game *game)
+{
+	exec_player_movements(game);
+	exec_player_rotations(game);
+	render(game);
+	return (0);
+}

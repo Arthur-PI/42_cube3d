@@ -6,7 +6,7 @@
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 21:58:41 by oaarsse           #+#    #+#             */
-/*   Updated: 2023/04/18 18:34:57 by oaarsse          ###   ########.fr       */
+/*   Updated: 2023/05/05 23:05:42 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,10 @@
 # include "parser.h"
 # include "graphics.h"
 # include "constant.h"
+# include "raycast.h"
 
 void	render(t_game	*game);
-int		dda(t_game *game, int x);
 bool	init_player(t_game	*game);
+void	render_wall_line(t_game *game, int x);
 
 #endif

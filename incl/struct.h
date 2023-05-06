@@ -6,7 +6,7 @@
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 17:47:13 by apigeon           #+#    #+#             */
-/*   Updated: 2023/04/18 15:33:29 by oaarsse          ###   ########.fr       */
+/*   Updated: 2023/05/06 00:18:16 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,26 @@ typedef struct s_map
 	t_player_pos	*player;
 }				t_map;
 
+typedef struct s_img
+{
+	int		endian;
+	int		line_length;
+	int		bits_per_pixel;
+	char	*addr;
+	void	*img;
+}				t_img;
+
 typedef struct s_texture
 {
 	int		width;
 	int		height;
 	void	*img;
 	char	*file;
+
+	char	*address;
+	int		endian;
+	int		line_length;
+	int		bits_per_pixel;
 }				t_texture;
 
 typedef struct s_textures
@@ -75,15 +89,6 @@ typedef struct s_textures
 	t_texture	*wall_west;
 	t_texture	*wall_east;
 }				t_textures;
-
-typedef struct s_img
-{
-	int		endian;
-	int		line_length;
-	int		bits_per_pixel;
-	char	*addr;
-	void	*img;
-}				t_img;
 
 typedef struct s_game
 {
