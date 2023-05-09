@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   img_pixel_put.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apigeon <apigeon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 12:10:26 by apigeon           #+#    #+#             */
-/*   Updated: 2022/12/11 20:43:11 by apigeon          ###   ########.fr       */
+/*   Updated: 2023/05/07 18:12:02 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static bool	pixel_in_window(int x, int y)
 	return (true);
 }
 
-void	img_pixel_put(t_img *img, int x, int y, int color)
+void	img_pixel_put(t_img *img, int x, int y, unsigned int color)
 {
 	int	offset;
 

@@ -6,7 +6,7 @@
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 01:22:44 by oaarsse           #+#    #+#             */
-/*   Updated: 2023/05/06 03:02:51 by oaarsse          ###   ########.fr       */
+/*   Updated: 2023/05/07 23:01:12 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ static void	print_dir(t_game *game)
 	double	y = game->player.direction.y;
 
 	if ((x == 0 && y == 1) || (x > -0.95 && x < 0.05 && y > 0.9))
-		printf("↑");
-	else if ((x == 1 && y == 0) || (x > 0.9 && y < 0.05 && y > -0.95))
 		printf("→");
-	else if ((x == 0 && y == -1) || (x > -0.95 && x < 0.05 && y < -0.9))
+	else if ((x == 1 && y == 0) || (x > 0.9 && y < 0.05 && y > -0.95))
 		printf("↓");
-	else if ((x == -1 && y == 0) || (x < -0.9 && y < 0.05 && y > -0.95))
+	else if ((x == 0 && y == -1) || (x > -0.95 && x < 0.05 && y < -0.9))
 		printf("←");
+	else if ((x == -1 && y == 0) || (x < -0.9 && y < 0.05 && y > -0.95))
+		printf("↑");
 	else if (x > 0 && y > 0)
 		printf("↗");
 	else if (x > 0 && y < 0)

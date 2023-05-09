@@ -6,20 +6,31 @@
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 23:22:26 by oaarsse           #+#    #+#             */
-/*   Updated: 2023/05/06 00:19:28 by oaarsse          ###   ########.fr       */
+/*   Updated: 2023/05/09 14:07:54 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "graphics.h"
 
-static unsigned int	get_pixel(t_texture *txture, int x, int y)
+// static unsigned int	get_pixel(t_texture *txture, int x, int y)
+// {
+// 	return (*(unsigned int *)(txture->address)
+// 		+ (y * txture->line_length)
+// 		+ (x * txture->bits_per_pixel / 8));
+// }
+
+static unsigned int	get_pixel(t_texture *tex, int x, int y)
 {
-	return (*(unsigned int *)(txture->address)
-		+ (y * txture->line_length)
-		+ (x * txture->bits_per_pixel / 8));
+	unsigned int	colour;
+	char			*dst;
+
+	dst = tex->address + (y * tex->line_length
+			+ (x * (tex->bits_per_pixel / 8)));
+	colour = *(unsigned int *)dst;
+	return (colour);
 }
 
-int	texture_pixel(t_game *game)
+unsigned int	texture_pixel(t_game *game)
 {
 	t_raycasting	raytc;
 

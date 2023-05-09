@@ -6,7 +6,7 @@
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 20:13:14 by apigeon           #+#    #+#             */
-/*   Updated: 2023/05/06 01:15:58 by oaarsse          ###   ########.fr       */
+/*   Updated: 2023/05/07 17:58:36 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@
 # define MASK_KEY_PRESS 1L
 # define MASK_KEY_RELEASE 2L
 
+# define TEXTURE_SIZE 128
 # define WALL '1'
 
 # define VERTICAL 0

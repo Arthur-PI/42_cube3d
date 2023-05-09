@@ -6,7 +6,7 @@
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 22:47:33 by oaarsse           #+#    #+#             */
-/*   Updated: 2023/05/06 00:21:27 by oaarsse          ###   ########.fr       */
+/*   Updated: 2023/05/07 18:05:36 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,10 @@ static void	get_wall_txture(t_game *game)
 			+ raytc->perp_wall_dist * raytc->ray_dir.x;
 	raytc->wall.x -= floor(raytc->wall.x);
 	raytc->txture.x = (int)(raytc->wall.x
-			* (double)game->textures->wall_north->width);
+			* (double)TEXTURE_SIZE);
 	if ((raytc->wall_side == VERTICAL && raytc->ray_dir.x < 0)
 		|| (raytc->wall_side == HORIZONTAL && raytc->ray_dir.y < 0))
-		raytc->txture.x = game->textures->wall_north->width
+		raytc->txture.x = TEXTURE_SIZE
 			- raytc->txture.x - 1;
 }
 
@@ -67,8 +67,7 @@ static void	draw_wall_strip(t_game *game, int x)
 	y = game->player.raycasting.draw_start;
 	while (y < game->player.raycasting.draw_end)
 	{
-		raytc->txture.y = (int)raytc->txture_pos & (game->textures
-				->wall_north->height - 1);
+		raytc->txture.y = (int)raytc->txture_pos & (TEXTURE_SIZE - 1);
 		raytc->txture_pos += raytc->txture_step;
 		img_pixel_put(game->img, x, y, texture_pixel(game));
 		y++;
@@ -84,7 +83,7 @@ void	render_wall_line(t_game *game, int x)
 	raytc = &game->player.raycasting;
 	wall_height(game);
 	get_wall_txture(game);
-	raytc->txture_step = 1.0 * game->textures->wall_north->height
+	raytc->txture_step = 1.0 * TEXTURE_SIZE
 		/ raytc->wall_height;
 	raytc->txture_pos = (raytc->draw_start - (WIN_HEIGHT / 2)
 			+ raytc->wall_height / 2) * raytc->txture_step;
