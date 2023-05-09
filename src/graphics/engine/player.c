@@ -6,7 +6,7 @@
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 15:34:20 by oaarsse           #+#    #+#             */
-/*   Updated: 2023/05/09 15:02:23 by oaarsse          ###   ########.fr       */
+/*   Updated: 2023/05/09 16:32:11 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,14 +50,14 @@ t_vector	plane(char pos)
 // {
 // 	t_vector	orientation;
 
-// 	if (pos == 'E' || pos == 'e')
-// 		orientation = (t_vector){0.0f, 1.0f};
-// 	else if (pos == 'S' || pos == 's')
+// 	if (pos == 'N' || pos == 'n')
 // 		orientation = (t_vector){1.0f, 0.0f};
-// 	else if (pos == 'W' || pos == 'w')
+// 	else if (pos == 'E' || pos == 'e')
 // 		orientation = (t_vector){0.0f, -1.0f};
-// 	else if (pos == 'N' || pos == 'n')
+// 	else if (pos == 'S' || pos == 's')
 // 		orientation = (t_vector){-1.0f, 0.0f};
+// 	else if (pos == 'W' || pos == 'w')
+// 		orientation = (t_vector){0.0f, 1.0f};
 // 	else
 // 		orientation = (t_vector){0.0f, 1.0f};
 // 	return (orientation);
@@ -67,14 +67,14 @@ t_vector	plane(char pos)
 // {
 // 	t_vector	dir_plane;
 
-// 	if (pos == 'E' || pos == 'e')
-// 		dir_plane = (t_vector){0.66, 0};
-// 	else if (pos == 'S' || pos == 's')
+// 	if (pos == 'N' || pos == 'n')
 // 		dir_plane = (t_vector){0, -0.66};
-// 	else if (pos == 'W' || pos == 'w')
+// 	else if (pos == 'E' || pos == 'e')
 // 		dir_plane = (t_vector){-0.66, 0};
-// 	else if (pos == 'N' || pos == 'n')
+// 	else if (pos == 'S' || pos == 's')
 // 		dir_plane = (t_vector){0, 0.66};
+// 	else if (pos == 'W' || pos == 'w')
+// 		dir_plane = (t_vector){0.66, 0};
 // 	else
 // 		dir_plane = (t_vector){0.66, 0};
 // 	return (dir_plane);
