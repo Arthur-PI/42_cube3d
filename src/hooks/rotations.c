@@ -6,7 +6,7 @@
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 00:39:49 by oaarsse           #+#    #+#             */
-/*   Updated: 2023/05/06 02:46:19 by oaarsse          ###   ########.fr       */
+/*   Updated: 2023/05/09 14:59:35 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ static void	right(t_game *game)
 	double	old_dir_x;
 	double	old_plane_x;
 
-	print_game_live(game, game->map, game->player);
 	old_dir_x = game->player.direction.x;
 	game->player.direction.x = game->player.direction.x * cos(-ROT_SPEED)
 		- game->player.direction.y * sin(-ROT_SPEED);
@@ -35,7 +34,6 @@ static void	left(t_game *game)
 	double	old_dir_x;
 	double	old_plane_x;
 
-	print_game_live(game, game->map, game->player);
 	old_dir_x = game->player.direction.x;
 	game->player.direction.x = game->player.direction.x * cos(ROT_SPEED)
 		- game->player.direction.y * sin(ROT_SPEED);

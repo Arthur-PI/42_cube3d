@@ -6,7 +6,7 @@
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 22:47:33 by oaarsse           #+#    #+#             */
-/*   Updated: 2023/05/07 18:05:36 by oaarsse          ###   ########.fr       */
+/*   Updated: 2023/05/09 14:38:58 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,9 @@ static void	draw_wall_strip(t_game *game, int x)
 	t_raycasting	*raytc;
 
 	raytc = &game->player.raycasting;
-	// y = -1;
-	// while (++y < raytc->draw_start) // TODO: find if draw wall here is faster rather than on start
-	// 	img_pixel_put(game->img, x, y, game->textures->ceiling);
+	y = -1;
+	while (++y < raytc->draw_start)
+		img_pixel_put(game->img, x, y, game->textures->ceiling);
 	y = game->player.raycasting.draw_start;
 	while (y < game->player.raycasting.draw_end)
 	{
@@ -72,8 +72,8 @@ static void	draw_wall_strip(t_game *game, int x)
 		img_pixel_put(game->img, x, y, texture_pixel(game));
 		y++;
 	}
-	// while (y++ < WIN_HEIGHT) // TODO: find if draw wall here is faster rather than on start
-	// 	img_pixel_put(game->img, x, y, game->textures->floor);
+	while (y++ < WIN_HEIGHT)
+		img_pixel_put(game->img, x, y, game->textures->floor);
 }
 
 void	render_wall_line(t_game *game, int x)
