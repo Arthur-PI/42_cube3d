@@ -6,7 +6,7 @@
 #    By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/30 16:08:04 by apigeon           #+#    #+#              #
-#    Updated: 2023/05/06 01:27:29 by oaarsse          ###   ########.fr        #
+#    Updated: 2023/05/09 15:14:15 by oaarsse          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,7 +75,6 @@ SRCS	+=	error.c \
 			utils/trim_end.c \
 			utils/print_game.c \
 			utils/move_player.c \
-			utils/print_map.c \
 			parser/parse_file.c \
 			parser/tokens_to_game.c \
 			parser/get_tokens.c \
