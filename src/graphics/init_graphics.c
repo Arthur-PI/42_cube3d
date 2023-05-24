@@ -25,6 +25,6 @@ int	init_graphics(t_game *game)
 	img = new_image(game->mlx);
 	if (!img)
 		return (-1);
-	render_img(game, new_image(game->mlx));
+	render_img(game, img);
 	return (1);
 }

@@ -43,13 +43,13 @@ void	free_game(t_game *game)
 		free_textures(game->mlx, game->textures);
 		if (game->win)
 			mlx_destroy_window(game->mlx, game->win);
+		if (game->img)
+			free_img(game->mlx, game->img);
 		if (game->mlx)
 		{
 			mlx_destroy_display(game->mlx);
 			free(game->mlx);
 		}
-		if (game->img)
-			free(game->img);
 		free(game);
 	}
 }
