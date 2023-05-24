@@ -46,9 +46,9 @@ unsigned int	texture_pixel(t_game *game)
 	else
 	{
 		if (game->player.position.y > raytc.map_box.y)
-			return (get_pixel(game->textures->wall_west,
+			return (get_pixel(game->textures->wall_east,
 					raytc.txture.x, raytc.txture.y));
-		return (get_pixel(game->textures->wall_east,
+		return (get_pixel(game->textures->wall_west,
 				raytc.txture.x, raytc.txture.y));
 	}
 }
