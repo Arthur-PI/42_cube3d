@@ -26,7 +26,7 @@ static bool	uniformise_map(t_map *map)
 		{
 			tmp = malloc(map->width + 1);
 			if (!tmp)
-				return (DEBUG("malloc error"), false);
+				return (false);
 			ft_memmove(tmp, map->points[i], len);
 			ft_memset(tmp + len, 0, (map->width - len) + 1);
 			free(map->points[i]);

@@ -19,6 +19,6 @@ bool	valid_map_values(t_list *tokens)
 	while (tokens && ((t_token *)tokens->content)->type == TOKEN_MAP)
 		tokens = tokens->next;
 	if (tokens)
-		return (DEBUG("infos after map data"), false);
+		return (false);
 	return (true);
 }

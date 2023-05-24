@@ -56,11 +56,8 @@ static int	key_press(int keycode, t_game *game)
 
 void	setup_hooks(t_game *game)
 {
-	mlx_hook(game->win, ON_DESTROY, MASK_NO_EVENT,
-		(void (*)(void)) & stop_loop, game->mlx);
-	mlx_hook(game->win, ON_KEYDOWN, MASK_KEY_PRESS,
-		(void (*)(void)) & key_press, game);
-	mlx_hook(game->win, ON_KEYUP, MASK_KEY_RELEASE,
-		(void (*)(void)) & key_release, game);
+	mlx_hook(game->win, ON_DESTROY, MASK_NO_EVENT, &stop_loop, game->mlx);
+	mlx_hook(game->win, ON_KEYDOWN, MASK_KEY_PRESS, &key_press, game);
+	mlx_hook(game->win, ON_KEYUP, MASK_KEY_RELEASE, &key_release, game);
 	mlx_loop_hook(game->mlx, game_loop, game);
 }

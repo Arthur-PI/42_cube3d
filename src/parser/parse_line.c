@@ -39,7 +39,7 @@ static int	extract_info_tokens(t_list **tokens, const char *s)
 
 	type = get_token_type(s);
 	if (type == TOKEN_UNDIFINED)
-		return (DEBUG("token info is undifined"), ERROR_TOKEN);
+		return (ERROR_TOKEN);
 	i = 0;
 	while (s[i] && s[i] != ' ')
 		i++;
@@ -47,13 +47,13 @@ static int	extract_info_tokens(t_list **tokens, const char *s)
 		i++;
 	len = ft_strlen(s) - i;
 	if (len == 0)
-		return (DEBUG("info token empty !"), ERROR_TOKEN);
+		return (ERROR_TOKEN);
 	token = create_token(ft_substr(s, i, len), type);
 	if (!token)
-		return (DEBUG("malloc error"), ERROR_TOKEN);
+		return (ERROR_TOKEN);
 	el = ft_lstnew(token);
 	if (!el)
-		return (DEBUG("malloc error"), free_token(token), ERROR_TOKEN);
+		return (free_token(token), ERROR_TOKEN);
 	ft_lstadd_back(tokens, el);
 	return (GOOD);
 }
@@ -79,15 +79,15 @@ static int	extract_map_token(t_list **tokens, const char *s)
 	while (s[i])
 	{
 		if (!is_map_char(s[i]))
-			return (DEBUG("token map format not valid"), ERROR_TOKEN);
+			return (ERROR_TOKEN);
 		i++;
 	}
 	token = create_token(ft_strdup(s), TOKEN_MAP);
 	if (!token)
-		return (DEBUG("malloc error"), ERROR_TOKEN);
+		return (ERROR_TOKEN);
 	el = ft_lstnew(token);
 	if (!el)
-		return (DEBUG("malloc error"), free_token(token), ERROR_TOKEN);
+		return (free_token(token), ERROR_TOKEN);
 	ft_lstadd_back(tokens, el);
 	return (GOOD);
 }

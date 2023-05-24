@@ -16,7 +16,7 @@ PROJECT	= cube3d
 CC		= cc
 CFLAGS	= -Wall -Wextra
 CFLAGS	+= -MMD -MP
-INCLUDE	= -I$(H_DIR) -I$(LIBFT_DIR)/$(H_DIR) -I$(MLX_DIR)/$(H_DIR)
+INCLUDE	= -I$(H_DIR) -I$(LIBFT_DIR)/$(H_DIR) -I$(MLX_DIR)
 LFLAGS	= -L$(LIBFT_DIR) -L$(MLX_DIR)
 LINKS	= -lm -lft -lmlx -lX11 -lXext
 VFLAGS	=
@@ -45,7 +45,6 @@ endif
 
 ifeq ($(FDEBUG),true)
 	CFLAGS += -g3
-	VFLAGS += -D DEBUG_MODE
 endif
 
 ifeq ($(FASAN),true)

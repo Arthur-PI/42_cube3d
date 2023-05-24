@@ -18,11 +18,11 @@ static t_texture	*create_texture(char *file)
 
 	texture = malloc(sizeof(*texture));
 	if (!texture)
-		return (DEBUG(MSG_MALLOC_ERROR), NULL);
+		return (NULL);
 	texture->img = NULL;
 	texture->file = ft_strdup(file);
 	if (!texture->file)
-		return (free(texture), (void)DEBUG(MSG_MALLOC_ERROR), NULL);
+		return (free(texture), NULL);
 	return (texture);
 }
 
@@ -69,9 +69,9 @@ static int	parse_color(char *color)
 		i++;
 	b = ft_atoi(color + ++i);
 	if (r > 255 || g > 255 || b > 255)
-		return (DEBUG(MSG_INVALID_COLOR), -1);
+		return (-1);
 	if (r < 0 || g < 0 || b < 0)
-		return (DEBUG(MSG_INVALID_COLOR), -1);
+		return (-1);
 	return (r << 16 | g << 8 | b);
 }
 

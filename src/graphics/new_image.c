@@ -18,7 +18,7 @@ t_img	*new_image(void *mlx)
 
 	img = malloc(sizeof(*img));
 	if (!img)
-		return (DEBUG("malloc error"), NULL);
+		return (NULL);
 	img->img = mlx_new_image(mlx, WIN_WIDTH, WIN_HEIGHT);
 	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel,
 			&img->line_length, &img->endian);

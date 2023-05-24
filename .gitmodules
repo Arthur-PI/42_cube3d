@@ -3,4 +3,4 @@
 	url = git@github.com:Arthur-PI/42_libft.git
 [submodule "mlx"]
 	path = mlx
-	url = git@github.com:Arthur-PI/minilibx.git
+	url = git@github.com:42Paris/minilibx-linux.git

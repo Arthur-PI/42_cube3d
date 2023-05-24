@@ -32,10 +32,10 @@ static char	*add_map_row(t_map *map, t_token *token)
 	len = tablen(map->points);
 	new_points = malloc((++len + 1) * sizeof(*new_points));
 	if (!new_points)
-		return (DEBUG("malloc error"), NULL);
+		return (NULL);
 	new_row = ft_strdup(token->value);
 	if (!new_row)
-		return (DEBUG("malloc error"), free(new_points), NULL);
+		return (free(new_points), NULL);
 	trim_end(new_row);
 	i = 0;
 	while (i < (len - 1))
@@ -75,7 +75,7 @@ static bool	set_player_pos(t_map *map)
 			if (isplayer(map->points[i][j]))
 			{
 				if (found)
-					return (DEBUG("Too many players on the map !"), false);
+					return (false);
 				map->player->pos[0] = i;
 				map->player->pos[1] = j;
 				found = true;
@@ -83,8 +83,6 @@ static bool	set_player_pos(t_map *map)
 			j++;
 		}
 	}
-	if (!found)
-		DEBUG("No player found on the map !");
 	return (found);
 }
 
