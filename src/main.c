@@ -27,9 +27,9 @@ int	main(int ac, char **av)
 	if (game == NULL)
 		exit(2);
 	if (init_graphics(game) == -1)
-		return (free_game(game), 3);
+		return (printf("Error\n"), free_game(game), 3);
 	if (load_textures(game->mlx, game->textures) == -1)
-		return (free_game(game), 4);
+		return (printf("Error\n"), free_game(game), 4);
 	init_player(game);
 	render(game);
 	setup_hooks(game);
