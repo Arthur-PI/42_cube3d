@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apigeon <apigeon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 23:10:10 by apigeon           #+#    #+#             */
-/*   Updated: 2023/01/03 23:10:17 by apigeon          ###   ########.fr       */
+/*   Updated: 2023/05/06 00:18:51 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ static int	load_texture(void *mlx, t_texture *t)
 	t->img = mlx_xpm_file_to_image(mlx, t->file, &t->width, &t->height);
 	if (!t->img)
 		return (DEBUG(MSG_ERROR_XPM_LOAD), -1);
+	t->address = mlx_get_data_addr(t->img, &t->bits_per_pixel,
+			&t->line_length, &t->endian);
 	return (1);
 }
 

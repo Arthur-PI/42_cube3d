@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apigeon <apigeon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 17:47:13 by apigeon           #+#    #+#             */
-/*   Updated: 2022/12/29 17:47:23 by apigeon          ###   ########.fr       */
+/*   Updated: 2023/05/06 00:18:16 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdlib.h>
 # include <sys/types.h>
 # include "error.h"
+# include "player.h"
 
 typedef enum e_token_type
 {
@@ -44,18 +45,27 @@ typedef struct s_token
 }				t_token;
 
 // pos[0] -> x, pos[1] -> y
-typedef struct s_player
+typedef struct s_player_pos
 {
 	int	pos[2];
-}				t_player;
+}				t_player_pos;
 
 typedef struct s_map
 {
-	uint		width;
-	uint		height;
-	char		**points;
-	t_player	*player;
+	uint			width;
+	uint			height;
+	char			**points;
+	t_player_pos	*player;
 }				t_map;
+
+typedef struct s_img
+{
+	int		endian;
+	int		line_length;
+	int		bits_per_pixel;
+	char	*addr;
+	void	*img;
+}				t_img;
 
 typedef struct s_texture
 {
@@ -63,6 +73,11 @@ typedef struct s_texture
 	int		height;
 	void	*img;
 	char	*file;
+
+	char	*address;
+	int		endian;
+	int		line_length;
+	int		bits_per_pixel;
 }				t_texture;
 
 typedef struct s_textures
@@ -75,15 +90,6 @@ typedef struct s_textures
 	t_texture	*wall_east;
 }				t_textures;
 
-typedef struct s_img
-{
-	int		endian;
-	int		line_length;
-	int		bits_per_pixel;
-	char	*addr;
-	void	*img;
-}				t_img;
-
 typedef struct s_game
 {
 	t_map		*map;
@@ -91,6 +97,7 @@ typedef struct s_game
 	void		*win;
 	t_img		*img;
 	t_textures	*textures;
+	t_player	player;
 }				t_game;
 
 void		free_token(void *ptr);

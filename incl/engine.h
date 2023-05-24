@@ -1,23 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cube3d.h                                           :+:      :+:    :+:   */
+/*   engine.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/14 12:16:34 by apigeon           #+#    #+#             */
-/*   Updated: 2023/05/06 00:02:42 by oaarsse          ###   ########.fr       */
+/*   Created: 2023/03/22 21:58:41 by oaarsse           #+#    #+#             */
+/*   Updated: 2023/05/05 23:05:42 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUBE3D_H
-# define CUBE3D_H
+#ifndef ENGINE_H
+# define ENGINE_H
 
 # include <stdio.h>
+# include <math.h>
+# include <limits.h>
+# include <float.h>
 # include "libft.h"
 # include "parser.h"
 # include "graphics.h"
-# include "engine.h"
-# include "hooks.h"
+# include "constant.h"
+# include "raycast.h"
+
+void	render(t_game	*game);
+bool	init_player(t_game	*game);
+void	render_wall_line(t_game *game, int x);
 
 #endif

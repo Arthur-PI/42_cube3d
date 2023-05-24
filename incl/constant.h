@@ -3,22 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   constant.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apigeon <apigeon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 20:13:14 by apigeon           #+#    #+#             */
-/*   Updated: 2022/12/13 17:10:01 by apigeon          ###   ########.fr       */
+/*   Updated: 2023/05/07 17:58:36 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CONSTANT_H
 # define CONSTANT_H
 
-# define WIN_WIDTH 1000
-# define WIN_HEIGHT 500
+# define WIN_WIDTH 640
+# define WIN_HEIGHT 480
 # define WIN_TITLE "Cube3D"
+# define FOV 66
 
 # define ON_DESTROY 17
 # define ON_KEYDOWN 2
+# define ON_KEYUP 3
 
 # define KEY_ESC 65307
 # define KEY_W 119
@@ -45,5 +47,16 @@
 
 # define MASK_NO_EVENT 0L
 # define MASK_KEY_PRESS 1L
+# define MASK_KEY_RELEASE 2L
+
+# define TEXTURE_SIZE 128
+# define WALL '1'
+
+# define VERTICAL 0
+# define HORIZONTAL 1
+
+# define ROT_SPEED 0.05f
+# define SPEED 0.05f
+# define HITBOX	0.1f
 
 #endif

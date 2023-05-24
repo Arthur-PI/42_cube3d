@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   print_game.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apigeon <apigeon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 12:10:26 by apigeon           #+#    #+#             */
-/*   Updated: 2022/12/11 20:43:11 by apigeon          ###   ########.fr       */
+/*   Updated: 2023/04/18 18:08:27 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
+#include "constant.h"
 
 void	print_map(t_map *map)
 {
@@ -26,6 +27,8 @@ void	print_game(t_game *game)
 	int	i;
 
 	printf("Game:\n");
+	printf(" - resolution: %dx%d\n", WIN_WIDTH,
+		WIN_HEIGHT);
 	printf(" - textures:\n");
 	printf("   - north wall: %s\n", game->textures->wall_north->file);
 	printf("   - south wall: %s\n", game->textures->wall_south->file);

@@ -1,0 +1,13 @@
+{
+	"files.associations": {
+		"engine.h": "c",
+		"cube3d.h": "c",
+		"__locale": "c",
+		"time.h": "c",
+		"graphics.h": "c",
+		"stdio.h": "c",
+		"__node_handle": "c",
+		"struct.h": "c",
+		"hooks.h": "c"
+	}
+}

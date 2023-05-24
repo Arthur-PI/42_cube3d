@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cube3d.h                                           :+:      :+:    :+:   */
+/*   draw_vertical_line.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/14 12:16:34 by apigeon           #+#    #+#             */
-/*   Updated: 2023/05/06 00:02:42 by oaarsse          ###   ########.fr       */
+/*   Created: 2023/04/18 17:39:43 by oaarsse           #+#    #+#             */
+/*   Updated: 2023/04/18 17:41:51 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUBE3D_H
-# define CUBE3D_H
+#include "graphics.h"
 
-# include <stdio.h>
-# include "libft.h"
-# include "parser.h"
-# include "graphics.h"
-# include "engine.h"
-# include "hooks.h"
+void	draw_vertical_line(t_img *img, int x, t_int_vector line, int color)
+{
+	int		y;
 
-#endif
+	y = line.x;
+	while (y < line.y)
+	{
+		img_pixel_put(img, x, y, color);
+		y++;
+	}
+}

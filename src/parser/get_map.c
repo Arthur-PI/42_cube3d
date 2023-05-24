@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apigeon <apigeon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 17:48:51 by apigeon           #+#    #+#             */
-/*   Updated: 2022/12/29 17:48:52 by apigeon          ###   ########.fr       */
+/*   Updated: 2023/05/06 02:04:46 by oaarsse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,8 @@ static bool	set_player_pos(t_map *map)
 			{
 				if (found)
 					return (DEBUG("Too many players on the map !"), false);
-				map->player->pos[0] = j;
-				map->player->pos[1] = i;
+				map->player->pos[0] = i;
+				map->player->pos[1] = j;
 				found = true;
 			}
 			j++;

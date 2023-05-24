@@ -1,11 +1,11 @@
-NO      ./assets/textures/texture1
+NO      ./assets/textures/floor.xpm
 
-WE ./assets/textures/texture3
+WE ./assets/textures/floor.xpm
 
 F     220,100,0
 
-SO ./assets/textures/texture2
-EA    ./assets/textures/texture4
+SO ./assets/textures/floor.xpm
+EA    ./assets/textures/floor.xpm
 
 C  225,30,0
 

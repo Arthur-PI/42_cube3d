@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: apigeon <marvin@42.fr>                     +#+  +:+       +#+         #
+#    By: oaarsse <oaarsse@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/30 16:08:04 by apigeon           #+#    #+#              #
-#    Updated: 2022/12/13 17:38:47 by apigeon          ###   ########.fr        #
+#    Updated: 2023/05/09 15:14:15 by oaarsse          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -96,11 +96,21 @@ SRCS	+=	error.c \
 			free/free_points.c \
 			graphics/load_textures.c \
 			graphics/init_graphics.c \
-			graphics/setup_hooks.c \
 			graphics/img_pixel_put.c \
 			graphics/free_img.c \
 			graphics/render_img.c \
 			graphics/new_image.c \
+			graphics/draw_vertical_line.c \
+			graphics/texture_pixel.c \
+			graphics/engine/render.c \
+			graphics/engine/player.c \
+			graphics/engine/wall.c \
+			graphics/engine/raycast/init.c \
+			graphics/engine/raycast/dda.c \
+			hooks/setup_hooks.c \
+			hooks/game.c \
+			hooks/movements.c \
+			hooks/rotations.c
 
 ### OBJECTS ###
 OBJS	= $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
