@@ -15,7 +15,7 @@
 
 # define WIN_WIDTH 640
 # define WIN_HEIGHT 480
-# define WIN_TITLE "Cube3D"
+# define WIN_TITLE "cub3D"
 # define FOV 66
 
 # define ON_DESTROY 17
