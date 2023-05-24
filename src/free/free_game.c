@@ -19,6 +19,8 @@ static void	free_texture(void *mlx, t_texture *texture)
 		if (texture->img)
 			mlx_destroy_image(mlx, texture->img);
 		free(texture->file);
+		if (texture->address)
+			free(texture->address)
 		free(texture);
 	}
 }
