@@ -103,7 +103,7 @@ t_map	*get_map(t_list *tokens)
 			row = add_map_row(map, token);
 			if (!row)
 				return (free_map(map), NULL);
-			map->width = MAX(map->width, ft_strlen(row));
+			map->width = max(map->width, ft_strlen(row));
 			map->height++;
 		}
 		tokens = tokens->next;

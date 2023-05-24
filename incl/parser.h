@@ -27,8 +27,6 @@
 # define GOOD 1
 # define ERROR_TOKEN -1
 
-# define MAX(a, b) ((a) < (b) ? (b) : (a))
-
 t_game		*parse_file(const char *filename);
 t_list		*get_tokens(const char *filename);
 t_token		*create_token(char *s, t_token_type type);
