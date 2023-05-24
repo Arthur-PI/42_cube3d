@@ -5,7 +5,7 @@ a.out
 tags
 binary_name
 compile_commands.json
-cube3d
+cub3D
 .cache
 .env
 .idea
