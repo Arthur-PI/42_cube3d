@@ -59,7 +59,7 @@ static bool	isplayer(char c)
 	return (false);
 }
 
-static bool	set_player_pos(t_map *map)
+bool	set_player_pos(t_map *map)
 {
 	uint	i;
 	uint	j;

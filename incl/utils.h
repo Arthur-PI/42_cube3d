@@ -14,6 +14,7 @@
 # define UTILS_H
 
 # include <stdbool.h>
+# include <sys/types.h>
 # include "libft.h"
 # include "struct.h"
 
@@ -22,5 +23,6 @@ void	print_game(t_game *game);
 void	print_map(t_map *map);
 bool	move_player(t_map *map, t_direction dir);
 int		max(int a, int b);
+void	reverse_string(char *s, uint len);
 
 #endif

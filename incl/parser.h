@@ -41,5 +41,6 @@ bool		can_escape_map(t_map *map);
 t_map		*get_map(t_list *tokens);
 t_textures	*get_textures(t_list *tokens);
 bool		is_wall_texture(t_token_type type);
+bool		set_player_pos(t_map *map);
 
 #endif

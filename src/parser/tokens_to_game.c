@@ -37,6 +37,19 @@ static bool	uniformise_map(t_map *map)
 	return (true);
 }
 
+static void	reverse_map(t_map *map)
+{
+	uint	i;
+
+	i = 0;
+	while (i < map->height)
+	{
+		reverse_string(map->points[i], map->width);
+		i++;
+	}
+	set_player_pos(map);
+}
+
 t_game	*tokens_to_game(t_list *tokens)
 {
 	t_game	*game;
@@ -52,5 +65,6 @@ t_game	*tokens_to_game(t_list *tokens)
 		return (free_game(game), NULL);
 	if (can_escape_map(game->map))
 		return (free_game(game), NULL);
+	reverse_map(game->map);
 	return (game);
 }
