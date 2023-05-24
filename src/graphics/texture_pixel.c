@@ -38,17 +38,17 @@ unsigned int	texture_pixel(t_game *game)
 	if (raytc.wall_side == VERTICAL)
 	{
 		if (game->player.position.x > raytc.map_box.x)
-			return (get_pixel(game->textures->wall_west,
+			return (get_pixel(game->textures->wall_north,
 					raytc.txture.x, raytc.txture.y));
-		return (get_pixel(game->textures->wall_east,
+		return (get_pixel(game->textures->wall_south,
 				raytc.txture.x, raytc.txture.y));
 	}
 	else
 	{
 		if (game->player.position.y > raytc.map_box.y)
-			return (get_pixel(game->textures->wall_north,
+			return (get_pixel(game->textures->wall_west,
 					raytc.txture.x, raytc.txture.y));
-		return (get_pixel(game->textures->wall_south,
+		return (get_pixel(game->textures->wall_east,
 				raytc.txture.x, raytc.txture.y));
 	}
 }
