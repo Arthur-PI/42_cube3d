@@ -26,7 +26,6 @@ int	main(int ac, char **av)
 	game = parse_file(av[1]);
 	if (game == NULL)
 		exit(2);
-	print_game(game);
 	if (init_graphics(game) == -1)
 		return (free_game(game), 3);
 	if (load_textures(game->mlx, game->textures) == -1)

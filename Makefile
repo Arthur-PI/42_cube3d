@@ -51,13 +51,13 @@ ifeq ($(FASAN),true)
 	CFLAGS += -fsanitize=address
 endif
 
-ifeq (test, $(filter test,$(MAKECMDGOALS)))
-	NAME	= bin/test
-	SRCS	= tests/core/run_tests.c \
-			  tests/main.c
-else
-	SRCS	= main.c
-endif
+#ifeq (test, $(filter test,$(MAKECMDGOALS)))
+#	NAME	= bin/test
+#	SRCS	= tests/core/run_tests.c \
+#			  tests/main.c
+#else
+SRCS	= main.c
+#endif
 
 ### INCLUDES ###
 OBJ_DIR		= bin
