@@ -23,7 +23,7 @@ VFLAGS	=
 
 ### EXECUTABLE ###
 NAME	= $(PROJECT)
-ARGS	= ./maps/simple.cub
+ARGS	= ./maps/map.cub
 
 ### ENV VARIABLES ###
 -include .env
