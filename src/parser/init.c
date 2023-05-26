@@ -18,7 +18,7 @@ static t_player_pos	*init_player(void)
 
 	player = malloc(sizeof(*player));
 	if (!player)
-		return (DEBUG("malloc error"), NULL);
+		return (NULL);
 	player->pos[0] = 0;
 	player->pos[1] = 0;
 	return (player);
@@ -30,7 +30,7 @@ t_textures	*init_textures(void)
 
 	textures = malloc(sizeof(*textures));
 	if (!textures)
-		return (DEBUG("malloc error"), NULL);
+		return (NULL);
 	textures->ceiling = 0;
 	textures->floor = 0;
 	textures->wall_north = NULL;
@@ -46,15 +46,15 @@ t_map	*init_map(void)
 
 	map = malloc(sizeof(*map));
 	if (!map)
-		return (DEBUG("malloc error"), NULL);
+		return (NULL);
 	map->height = 0;
 	map->width = 0;
 	map->player = init_player();
 	if (!map->player)
-		return (DEBUG("malloc error"), free_map(map), NULL);
+		return (free_map(map), NULL);
 	map->points = malloc (sizeof(*(map->points)));
 	if (!map->points)
-		return (DEBUG("malloc error"), free_map(map), NULL);
+		return (free_map(map), NULL);
 	map->points[0] = NULL;
 	return (map);
 }
@@ -65,7 +65,7 @@ t_game	*init_game(void)
 
 	game = malloc(sizeof(*game));
 	if (!game)
-		return (DEBUG(MSG_MALLOC_ERROR), NULL);
+		return (NULL);
 	game->map = NULL;
 	game->textures = NULL;
 	game->mlx = NULL;

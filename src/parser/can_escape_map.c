@@ -39,7 +39,7 @@ bool	can_escape_map(t_map *map)
 			if (map->points[i][j] != '1' && map->points[i][j] != ' ')
 			{
 				if (is_neighbour_void(map->points, i, j))
-					return (DEBUG("The map is not protected by walls"), true);
+					return (true);
 			}
 			j++;
 		}

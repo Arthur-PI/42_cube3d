@@ -27,11 +27,11 @@ static bool	check_color(char *color)
 			nb_comma++;
 		}
 		if (!ft_isdigit(color[i]) && !ft_isspace(color[i]))
-			return (DEBUG("invalid floor or ceiling color"), false);
+			return (false);
 		i++;
 	}
 	if (nb_comma != 2)
-		return (DEBUG("invalid floor or ceiling color"), false);
+		return (false);
 	return (true);
 }
 
@@ -51,13 +51,13 @@ bool	valid_colors(t_list *tokens)
 				return (false);
 			colors[token->type % 2] += 1;
 			if (colors[token->type % 2] > 1)
-				return (DEBUG("ceiling or floor color duplicate"), NULL);
+				return (NULL);
 		}
 		tokens = tokens->next;
 	}
 	i = 0;
 	while (i < 2)
 		if (colors[i++] == 0)
-			return (DEBUG("ceiling or floor color missing"), NULL);
+			return (NULL);
 	return (true);
 }

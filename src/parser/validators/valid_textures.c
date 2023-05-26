@@ -44,16 +44,16 @@ bool	valid_textures(t_list *tokens)
 		if (is_token_texture(token->type))
 		{
 			if (!valid_texture(token))
-				return (DEBUG("wall texture file is invalid"), false);
+				return (false);
 			textures[token->type % 4] += 1;
 			if (textures[token->type % 4] > 1)
-				return (DEBUG("wall texture duplicate"), false);
+				return (false);
 		}
 		tokens = tokens->next;
 	}
 	i = 0;
 	while (i < 4)
 		if (textures[i++] == 0)
-			return (DEBUG("wall texture missing"), false);
+			return (false);
 	return (true);
 }

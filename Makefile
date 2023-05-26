@@ -16,7 +16,7 @@ PROJECT	= cub3D
 CC		= cc
 CFLAGS	= -Wall -Wextra
 CFLAGS	+= -MMD -MP
-INCLUDE	= -I$(H_DIR) -I$(LIBFT_DIR)/$(H_DIR) -I$(MLX_DIR)/$(H_DIR)
+INCLUDE	= -I$(H_DIR) -I$(LIBFT_DIR)/$(H_DIR) -I$(MLX_DIR)
 LFLAGS	= -L$(LIBFT_DIR) -L$(MLX_DIR)
 LINKS	= -lm -lft -lmlx -lX11 -lXext
 VFLAGS	=
@@ -45,7 +45,6 @@ endif
 
 ifeq ($(FDEBUG),true)
 	CFLAGS += -g3
-	VFLAGS += -D DEBUG_MODE
 endif
 
 ifeq ($(FASAN),true)
@@ -75,6 +74,7 @@ SRCS	+=	error.c \
 			utils/trim_end.c \
 			utils/print_game.c \
 			utils/move_player.c \
+			utils/utils.c \
 			parser/parse_file.c \
 			parser/tokens_to_game.c \
 			parser/get_tokens.c \
@@ -196,7 +196,7 @@ fclean:	clean
 	@rm -f $(NAME)
 
 re:	fclean
-	$(MAKE) all
+	@$(MAKE) all
 
 .PHONY:	all clean fclean re
 

@@ -19,8 +19,6 @@ static void	free_texture(void *mlx, t_texture *texture)
 		if (texture->img)
 			mlx_destroy_image(mlx, texture->img);
 		free(texture->file);
-		if (texture->address)
-			free(texture->address);
 		free(texture);
 	}
 }
@@ -45,6 +43,8 @@ void	free_game(t_game *game)
 		free_textures(game->mlx, game->textures);
 		if (game->win)
 			mlx_destroy_window(game->mlx, game->win);
+		if (game->img)
+			free_img(game->mlx, game->img);
 		if (game->mlx)
 		{
 			mlx_destroy_display(game->mlx);

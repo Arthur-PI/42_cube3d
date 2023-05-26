@@ -15,12 +15,6 @@
 
 # include <stdio.h>
 
-# ifdef DEBUG_MODE
-#  define DEBUG(msg) (printf("[DEBUG %s@%d] %s \n", __FILE__, __LINE__, msg))
-# else
-#  define DEBUG(msg) (NULL)
-# endif
-
 # define MSG_INVALID_FILENAME "The map filename is invalid, only .cub accepted."
 # define MSG_FILE_NOT_READABLE "Can't open the file."
 # define MSG_MALLOC_ERROR "can't allocate memory. "
