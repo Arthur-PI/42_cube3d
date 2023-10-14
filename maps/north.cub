@@ -1,0 +1,12 @@
+EA  ./assets/textures/brick_wall_128.xpm
+NO  ./assets/textures/dark_wood_128.xpm
+SO  ./assets/textures/stone_128.xpm
+WE  ./assets/textures/minec_wood_128.xpm
+
+C 055,000,160
+F 1,1,1
+
+111
+101
+1N1
+111

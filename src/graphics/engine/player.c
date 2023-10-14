@@ -12,52 +12,18 @@
 
 #include "engine.h"
 
-t_vector	orientation(char pos)
-{
-	t_vector	orientation;
-
-	if (pos == 'N' || pos == 'n')
-		orientation = (t_vector){0.0f, 1.0f};
-	else if (pos == 'E' || pos == 'e')
-		orientation = (t_vector){1.0f, 0.0f};
-	else if (pos == 'S' || pos == 's')
-		orientation = (t_vector){0.0f, -1.0f};
-	else if (pos == 'W' || pos == 'w')
-		orientation = (t_vector){-1.0f, 0.0f};
-	else
-		orientation = (t_vector){0.0f, 1.0f};
-	return (orientation);
-}
-
-t_vector	plane(char pos)
-{
-	t_vector	dir_plane;
-
-	if (pos == 'N' || pos == 'n')
-		dir_plane = (t_vector){0.66, 0};
-	else if (pos == 'E' || pos == 'e')
-		dir_plane = (t_vector){0, -0.66};
-	else if (pos == 'S' || pos == 's')
-		dir_plane = (t_vector){-0.66, 0};
-	else if (pos == 'W' || pos == 'w')
-		dir_plane = (t_vector){0, 0.66};
-	else
-		dir_plane = (t_vector){0.66, 0};
-	return (dir_plane);
-}
-
 // t_vector	orientation(char pos)
 // {
 // 	t_vector	orientation;
 
 // 	if (pos == 'N' || pos == 'n')
-// 		orientation = (t_vector){1.0f, 0.0f};
-// 	else if (pos == 'E' || pos == 'e')
-// 		orientation = (t_vector){0.0f, -1.0f};
-// 	else if (pos == 'S' || pos == 's')
-// 		orientation = (t_vector){-1.0f, 0.0f};
-// 	else if (pos == 'W' || pos == 'w')
 // 		orientation = (t_vector){0.0f, 1.0f};
+// 	else if (pos == 'E' || pos == 'e')
+// 		orientation = (t_vector){1.0f, 0.0f};
+// 	else if (pos == 'S' || pos == 's')
+// 		orientation = (t_vector){0.0f, -1.0f};
+// 	else if (pos == 'W' || pos == 'w')
+// 		orientation = (t_vector){-1.0f, 0.0f};
 // 	else
 // 		orientation = (t_vector){0.0f, 1.0f};
 // 	return (orientation);
@@ -68,17 +34,51 @@ t_vector	plane(char pos)
 // 	t_vector	dir_plane;
 
 // 	if (pos == 'N' || pos == 'n')
-// 		dir_plane = (t_vector){0, -0.66};
-// 	else if (pos == 'E' || pos == 'e')
-// 		dir_plane = (t_vector){-0.66, 0};
-// 	else if (pos == 'S' || pos == 's')
-// 		dir_plane = (t_vector){0, 0.66};
-// 	else if (pos == 'W' || pos == 'w')
 // 		dir_plane = (t_vector){0.66, 0};
+// 	else if (pos == 'E' || pos == 'e')
+// 		dir_plane = (t_vector){0, -0.66};
+// 	else if (pos == 'S' || pos == 's')
+// 		dir_plane = (t_vector){-0.66, 0};
+// 	else if (pos == 'W' || pos == 'w')
+// 		dir_plane = (t_vector){0, 0.66};
 // 	else
 // 		dir_plane = (t_vector){0.66, 0};
 // 	return (dir_plane);
 // }
+
+t_vector	orientation(char pos)
+{
+	t_vector	orientation;
+
+	if (pos == 'N' || pos == 'n')
+		orientation = (t_vector){-1.0f, 0.0f};
+	else if (pos == 'E' || pos == 'e')
+		orientation = (t_vector){0.0f, -1.0f};
+	else if (pos == 'S' || pos == 's')
+		orientation = (t_vector){1.0f, 0.0f};
+	else if (pos == 'W' || pos == 'w')
+		orientation = (t_vector){0.0f, 1.0f};
+	else
+		orientation = (t_vector){0.0f, 1.0f};
+	return (orientation);
+}
+
+t_vector	plane(char pos)
+{
+	t_vector	dir_plane;
+
+	if (pos == 'N' || pos == 'n')
+		dir_plane = (t_vector){0, 0.66};
+	else if (pos == 'E' || pos == 'e')
+		dir_plane = (t_vector){-0.66, 0};
+	else if (pos == 'S' || pos == 's')
+		dir_plane = (t_vector){0, -0.66};
+	else if (pos == 'W' || pos == 'w')
+		dir_plane = (t_vector){0.66, 0};
+	else
+		dir_plane = (t_vector){0.66, 0};
+	return (dir_plane);
+}
 
 bool	init_player(t_game *game)
 {
